@@ -1,7 +1,7 @@
 <%-- 
     Document   : formularioArtista
     Created on : 20/08/2017, 08:28:12 PM
-    Author     : Benjamin "12g" La Madrid; Danny Olivares
+    Author     : Benjamin "12g" La Madrid
 --%>
 
 <%@page contentType="text/html" pageEncoding="windows-1252"%>
