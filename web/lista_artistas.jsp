@@ -18,20 +18,11 @@
                 <div class="col">
                     <br>
                     <div class="">
-                        <h1>Wiki Instruments</h1>
-                        <form>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Usuario</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Email">
-                                <small id="emailHelp" class="form-text text-muted">
-                                    Nunca compartiremos su correo electrónico con nadie más.</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
-                            </div>
-                            <button type="submit" class="btn btn-danger">Entrar</button>
-                        </form>
+                        <h1 class="text-light">Artistas</h1>
+                        <%for (int i = 0; i < 10; i++) {
+                                out.print("<p>Test</p>");
+                            }
+                        %>
                     </div>
                     <br>
                     <br>
