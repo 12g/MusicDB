@@ -33,12 +33,7 @@
                             <label for="exampleInputPassword1">Contraseña</label>
                             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña">
                           </div>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input type="checkbox" class="form-check-input">
-                              Recuerdame
-                            </label>
-                          </div>
+                         
                           <button type="submit" class="btn btn-danger">Entrar</button>
                         </form>
                     </div>
