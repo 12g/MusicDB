@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import music_db.Artista;
 
 /**
  *
@@ -50,10 +51,11 @@ public class Login extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(); //obtiene la sesion del usuario o la crea
         session.setAttribute("email", email);
         session.setAttribute("password", password);
-        session.setAttribute("password", new ArrayList<music_db.Artista>());
+        //"artistas" sera un objeto ArrayList y se encargara de almacenar todos los artistas, actuando como una BD
+        session.setAttribute("artistas", new ArrayList<Artista>()); 
         
         RequestDispatcher rd = request.getRequestDispatcher("lista_artistas.jsp");
         

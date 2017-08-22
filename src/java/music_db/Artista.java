@@ -31,8 +31,8 @@ public class Artista {
     private boolean grupo;
 
     /**
-     * Obtiene todos los álbumes del artista.
-     * @return La lista de álbumes del artista, en forma de un objeto ArrayList.
+     * Obtiene todos los álbumes del artista publicados.
+     * @return Un objeto ArrayList con dichos álbumes del artista.
      */
     public List<Album> getAlbumes() {
         return albumes;
@@ -40,7 +40,7 @@ public class Artista {
 
     /**
      * Ingresa una nueva entrada en la lista de álbumes del artista.
-     * @param album El objeto de clase Album a agregar.
+     * @param album El objeto, de clase Album, a agregar a dicha lista.
      */
     public void addAlbum(Album album) {
         this.albumes.add(album);
@@ -54,43 +54,79 @@ public class Artista {
         this.albumes.remove(index);
     }
 
+    /**
+     * Obtiene el nombre completo del artista.
+     * @return Un string con el nombre del artista.
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     * Establece el nombre del artista.
+     * @param nombre Un string conteniendo el nombre completo de dicho artista.
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * Obtiene la fecha de nacimiento (o formación) del artista.
+     * @return Un string en formato 'DD/MM/AAAA'.
+     */
     public String getFechaNac() {
         return fechaNac;
     }
 
+    /**
+     * Cambia la fecha de nacimiento establecida del artista.
+     * @param fecha Un String conteniendo una fecha en el formato 'DD/MM/AAAA'
+     */
     public void setFechaNac(String fecha) {
         this.fechaNac = fecha;
     }
 
-    public boolean isGrupo() {
+    /**
+     * Este método responde la pregunta: ¿es este artista, un grupo o una persona?
+     * @return true si es un grupo, false si es una persona
+     */
+    public boolean esGrupo() {
         return grupo;
     }
 
+    /**
+     * Configura el artista para ser un grupo o una persona
+     * @param esGrupo true si es un grupo, false si es una persona
+     */
     public void setEsGrupo(boolean esGrupo) {
         this.grupo = esGrupo;
     }
 
+    /**
+     * Crea un nuevo objeto Artista y crea una lista de álbumes vacía para éste.
+     * @param nombre Nombre completo del artista
+     * @param fecha Fecha, en formato 'DD/MM/AAAA'
+     * @param grupo true si es un grupo, false si es una persona
+     */
     public Artista(String nombre, String fecha, boolean grupo) {
-        albumes = new ArrayList<Album>();
+        this.albumes = new ArrayList<Album>();
         setNombre(nombre);
         setFechaNac(fecha);
         setEsGrupo(grupo);
     }
 
+    /**
+     * Crea un nuevo objeto Artista y le asigna una lista de álbumes ya creada.
+     * @param nombre Nombre completo del artista
+     * @param fecha Fecha, en formato 'DD/MM/AAAA'
+     * @param grupo true si es un grupo, false si es una persona
+     * @param albumes 
+     */
     public Artista(String nombre, String fecha, boolean grupo, ArrayList<Album> albumes) {
         this.albumes = albumes;
         setNombre(nombre);
         setFechaNac(fecha);
         setEsGrupo(grupo);
     }
-    
     
 }
