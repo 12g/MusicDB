@@ -1,23 +1,39 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2017 Benjamin "12g" La Madrid
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.duoc.dej4501.servlet;
+
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import music_db.Artista;
 
 /**
  *
- * @author crist
+ * @author Benjamin "12g" La Madrid
  */
-public class NombreDelServlet extends HttpServlet {
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,14 +46,20 @@ public class NombreDelServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        response.setContentType("text/html;charset=UTF-8");
         
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         
-        //Nos movemos a la siguiente pagina o servlet indicado en el dispatcher
-        RequestDispatcher rd=request.getRequestDispatcher("ejemplo.jsp");   
-        rd.forward(request, response);//method may be include or forward  
+        HttpSession session = request.getSession(); //obtiene la sesion del usuario o la crea
+        session.setAttribute("email", email);
+        session.setAttribute("password", password);
+        //"artistas" sera un objeto ArrayList y se encargara de almacenar todos los artistas, actuando como una BD
+        session.setAttribute("artistas", new ArrayList<Artista>()); 
         
+        RequestDispatcher rd = request.getRequestDispatcher("lista_artistas.jsp");
         
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
