@@ -3,11 +3,12 @@
     Created on : 23/08/2017, 12:27:21 AM
     Author     : samsung
 --%>
-
+voy a dormir benjis
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
-<% List lista_artistas = (List)session.getAttribute("artistas");%>
+<% List lista_artistas = (List)session.getAttribute("artistas");
+lista_artistas.add();%>
 <!DOCTYPE html>
 <html>
     <head>  
@@ -41,7 +42,7 @@
                 </tr>
                 <c:forEach items="${lista_artistas}" var="">
                     <tr>
-                        <th scope="row">1</th>
+                      <th scope="row">1</th>
                       <td>Aperfect Circle</td>
                       <td>@pperfectCircle</td>
                       <td>Aperfect Circle Band</td>
