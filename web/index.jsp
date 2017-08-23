@@ -10,9 +10,10 @@
     <head>  
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Wiki Instruments</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     </head>
-<body class="bg-dark text-light" style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
+    <body class="bg-dark text-light" style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
         <div class="container">
             <div class="row">
                 <div class="col">

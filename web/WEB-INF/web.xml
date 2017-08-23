@@ -8,6 +8,16 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ArtistList</servlet-name>
+        <jsp-file>/lista_artistas.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArtistList</servlet-name>
+        <url-pattern>/lista_artistas</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
