@@ -4,6 +4,7 @@
     Author     : Benjamin "12g" La Madrid; Danny Olivares
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,41 +28,25 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
+                                <th>Nacimiento/Formación</th>
                                 <th>Álbumes</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td class="text-right">
-                                    <a href="verArtista" class="btn btn-primary btn-xs">
-                                        <span class="oi oi-info"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td class="text-right">
-                                    <a href="verArtista" class="btn btn-primary btn-xs">
-                                        <span class="oi oi-info"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td class="text-right">
-                                    <a href="verArtista" class="btn btn-primary btn-xs">
-                                        <span class="oi oi-info"></span>
-                                    </a>
-                                </td>
-                            </tr>
+                            <c:forEach items="${artistas}" var="artista">
+                                <tr>
+                                    <th scope="row">${artistas.indexOf(artista)+1}</th>
+                                    <td><c:out default="X" value="${artista.nombre}" ></c:out></td>
+                                    <td><c:out default="X" value="${artista.fechaNac}" ></c:out></td>
+                                    <td><c:out default="X" value="${artista.albumes.size()}" ></c:out></td>
+                                    <td class="text-right">
+                                        <a href="verArtista" class="btn btn-primary btn-xs">
+                                            <span class="oi oi-info"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                         </tbody>
                     </table>
                 </div>

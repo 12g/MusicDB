@@ -20,6 +20,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -55,11 +56,25 @@ public class Login extends HttpServlet {
         session.setAttribute("email", email);
         session.setAttribute("password", password);
         //"artistas" sera un objeto ArrayList y se encargara de almacenar todos los artistas, actuando como una BD
-        session.setAttribute("artistas", new ArrayList<Artista>()); 
+        List<Artista> artistas =  new ArrayList<Artista>();
+        artistas.add(new Artista("Black Sabbath", 1968, true));
+        artistas.add(new Artista("David Bowie", 1947, true));
+        artistas.add(new Artista("Neutral Milk Hotel", 1989, true));
+        artistas.add(new Artista("Juan Gabriel", 1950, true));
+        session.setAttribute("artistas", artistas); 
         
-        RequestDispatcher rd = request.getRequestDispatcher("lista_artistas.jsp");
+        //Este Servlet fue llamado con un método POST, para recibir la información del formulario de login
+        //Asumimos que además el cliente que completó dicho formulario espera ser llevado a otra página
+        //Re-procesaremos la petición "request" para que desde aquí use el método GET
+        //Para mayo HTTP, https://en.wikipedia.org/wiki/HTTP_303
         
-        rd.forward(request, response);
+        response.setStatus(303);
+        response.setHeader("Location", "/music-wiki/lista_artistas");
+        
+        //
+        //RequestDispatcher rd = request.getRequestDispatcher("lista_artistas.jsp");
+        
+        //rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

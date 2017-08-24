@@ -27,7 +27,7 @@ public class Artista {
     
     private List<Album> albumes;
     private String nombre;
-    private String fechaNac;
+    private int fechaNac;
     private boolean grupo;
 
     /**
@@ -74,7 +74,7 @@ public class Artista {
      * Obtiene la fecha de nacimiento (o formación) del artista.
      * @return Un string en formato 'DD/MM/AAAA'.
      */
-    public String getFechaNac() {
+    public int getFechaNac() {
         return fechaNac;
     }
 
@@ -82,7 +82,7 @@ public class Artista {
      * Cambia la fecha de nacimiento establecida del artista.
      * @param fecha Un String conteniendo una fecha en el formato 'DD/MM/AAAA'
      */
-    public void setFechaNac(String fecha) {
+    public void setFechaNac(int fecha) {
         this.fechaNac = fecha;
     }
 
@@ -108,7 +108,7 @@ public class Artista {
      * @param fecha Fecha, en formato 'DD/MM/AAAA'
      * @param grupo true si es un grupo, false si es una persona
      */
-    public Artista(String nombre, String fecha, boolean grupo) {
+    public Artista(String nombre, int fecha, boolean grupo) {
         this.albumes = new ArrayList<Album>();
         setNombre(nombre);
         setFechaNac(fecha);
@@ -122,7 +122,7 @@ public class Artista {
      * @param grupo true si es un grupo, false si es una persona
      * @param albumes 
      */
-    public Artista(String nombre, String fecha, boolean grupo, ArrayList<Album> albumes) {
+    public Artista(String nombre, int fecha, boolean grupo, ArrayList<Album> albumes) {
         this.albumes = albumes;
         setNombre(nombre);
         setFechaNac(fecha);
