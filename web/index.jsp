@@ -26,12 +26,12 @@
                             <label for="inputEmail">Usuario</label>
                             <input id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su email..." />
                             <small id="emailHelp" class="form-text text-muted">
-                                Nunca compartiremos su correo electr�nico con nadie m�s.
+                                Nunca compartiremos su correo electrónico con nadie más.
                             </small>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword">Contrase�a</label>
-                            <input id="inputPassword" type="password" class="form-control" placeholder="Ingrese una contrase�a..." />
+                            <label for="inputPassword">Contraseña</label>
+                            <input id="inputPassword" type="password" class="form-control" placeholder="Ingrese una contraseña..." />
                         </div>
                         <input type="submit" class="btn btn-danger" value="Entrar" />
                     </form>

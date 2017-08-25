@@ -22,8 +22,8 @@
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-muted">
                     <br/>
-                    <h1 class="text-info">Wiki Instruments</h1>
-                    <table class="table">
+                    <h1 class="text-info">Artistas en la Base de Datos</h1>
+                    <table class="table table-hover">
                         <thead class="bg-primary">
                             <tr>
                                 <th>#</th>
@@ -35,20 +35,22 @@
                         </thead>
                         <tbody>
                             <c:forEach items="${artistas}" var="artista">
-                                <tr>
-                                    <th scope="row">${artistas.indexOf(artista)+1}</th>
+                                <c:set var="artistaID" value="${artistas.indexOf(artista)}" scope="session" />
+                                <tr class="${(artistaID%2 != 0)? "warning text-warning":"success text-success"}">
+                                    <th scope="row">${artistaID+1}</th>
                                     <td><c:out default="X" value="${artista.nombre}" ></c:out></td>
                                     <td><c:out default="X" value="${artista.fechaNac}" ></c:out></td>
                                     <td><c:out default="X" value="${artista.albumes.size()}" ></c:out></td>
                                     <td class="text-right">
-                                        <a href="verArtista" class="btn btn-primary btn-xs">
-                                            <span class="oi oi-info"></span>
-                                        </a>
+                                        <a href="verArtista?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
+                                        <a href="editarArtista?id=${artistaID}" class="btn btn-warning btn-xs text-center" style="width:24px"><span class="oi oi-pencil"></span></a>
+                                        <a href="borrarArtista?id=${artistaID}" class="btn btn-danger btn-xs text-center" style="width:24px"><span class="oi oi-trash"></span></a>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
+                    <a href="formularioAgregar" class="btn btn-primary">Nuevo</a>
                 </div>
             </div>
         </div>
