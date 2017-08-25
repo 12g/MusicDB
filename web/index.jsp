@@ -4,7 +4,7 @@
     Author     : Benjamin "12g" La Madrid; Danny Olivares
 --%>
 
-<%@page contentType="text/html" pageEncoding="windows-1252"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>  
@@ -26,12 +26,12 @@
                             <label for="inputEmail">Usuario</label>
                             <input id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su email..." />
                             <small id="emailHelp" class="form-text text-muted">
-                                Nunca compartiremos su correo electrónico con nadie más.
+                                Nunca compartiremos su correo electrï¿½nico con nadie mï¿½s.
                             </small>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword">Contraseña</label>
-                            <input id="inputPassword" type="password" class="form-control" placeholder="Ingrese una contraseña..." />
+                            <label for="inputPassword">Contraseï¿½a</label>
+                            <input id="inputPassword" type="password" class="form-control" placeholder="Ingrese una contraseï¿½a..." />
                         </div>
                         <input type="submit" class="btn btn-danger" value="Entrar" />
                     </form>
