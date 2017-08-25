@@ -28,8 +28,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Nacimiento/Formación</th>
-                                <th>Álbumes</th>
+                                <th class="text-center">Nacimiento/Formación</th>
+                                <th class="text-center">Álbumes</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -39,8 +39,8 @@
                                 <tr class="${(artistaID%2 != 0)? "warning text-warning":"success text-success"}">
                                     <th scope="row">${artistaID+1}</th>
                                     <td><c:out default="X" value="${artista.nombre}" ></c:out></td>
-                                    <td><c:out default="X" value="${artista.fechaNac}" ></c:out></td>
-                                    <td><c:out default="X" value="${artista.albumes.size()}" ></c:out></td>
+                                    <td class="text-center"><c:out default="X" value="${artista.fechaNac}" ></c:out></td>
+                                    <td class="text-center"><c:out default="X" value="${artista.albumes.size()}" ></c:out></td>
                                     <td class="text-right">
                                         <a href="verArtista?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
                                         <a href="editarArtista?id=${artistaID}" class="btn btn-warning btn-xs text-center" style="width:24px"><span class="oi oi-pencil"></span></a>
@@ -50,7 +50,12 @@
                             </c:forEach>
                         </tbody>
                     </table>
-                    <a href="formularioAgregar" class="btn btn-primary">Nuevo</a>
+                </div>
+                <div class="col-xs-4 col-xs-offset-2 text-muted text-left">
+                    <a href="agregar_artista" class="btn btn-primary">Nuevo</a>
+                </div>
+                <div class="col-xs-4 text-muted text-right">
+                    <a href="buscar_artista" class="btn btn-info">Buscar</a>
                 </div>
             </div>
         </div>
