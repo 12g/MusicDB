@@ -12,7 +12,8 @@ El objetivo del sistema es que, por medio de la interfaz, podamos añadir, edita
 ### Tecnologías
 
 En este proyecto usamos la tecnología de Java EE, que se compone de 2 tipos de archivo: Servlet y JSP.
-Además, adherimos el framework [Bootstrap](https://github.com/twbs/bootstrap) para darle los estilos pertinentes.
+Además, adherimos el framework [Bootstrap](https://github.com/twbs/bootstrap) para darle los estilos pertinentes y hacer que las páginas sean responsivas.
+También usamos [OpenIconic](https://useiconic.com/open) para darle aún más estilo y permitir una mayor facilidad de lectura en formatos responsivos.
 
 ### Autores
 
