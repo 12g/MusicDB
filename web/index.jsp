@@ -1,5 +1,5 @@
 <%-- 
-    Document   : formularioArtista
+    Document   : index.jsp
     Created on : 20/08/2017, 08:28:12 PM
     Author     : Benjamin "12g" La Madrid; Danny Olivares
 --%>
@@ -8,34 +8,35 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>  
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+        <title>Inicio - Wiki Instruments</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="open-iconic/css/open-iconic-bootstrap.css" rel="stylesheet" type="text/css"/>
     </head>
-<body class="bg-dark text-light" style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
+    <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <br>
-                    <div class="">
-                        <h1>Wiki Instruments</h1>
-                        <form action="login" method="post">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Usuario</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese Email" />
-                                <small id="emailHelp" class="form-text text-muted">
-                                    Nunca compartiremos su correo electrónico con nadie más.
-                                </small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Contraseña</label>
-                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" />
-                            </div>
-                            <input type="submit" class="btn btn-danger" value="Entrar" />
-                        </form>
-                    </div>
-                    <br>
-                    <br>
+                    <br/>
+                    <h1 class="text-light">Wiki Instruments</h1>
+                    <form action="login" method="post">
+                        <div class="form-group">
+                            <label for="inputEmail">Usuario</label>
+                            <input id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su email..." />
+                            <small id="emailHelp" class="form-text text-muted">
+                                Nunca compartiremos su correo electrónico con nadie más.
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword">Contraseña</label>
+                            <input id="inputPassword" type="password" class="form-control" placeholder="Ingrese una contraseña..." />
+                        </div>
+                        <input type="submit" class="btn btn-danger" value="Entrar" />
+                    </form>
+                    <br/>
+                    <br/>
                 </div>
             </div>
             <div class="row">
@@ -44,9 +45,8 @@
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <script src="bootstrap/js/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="bootstrap/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </body>
 </html>
 
