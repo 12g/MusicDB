@@ -52,10 +52,10 @@
                     </table>
                 </div>
                 <div class="col-xs-4 col-xs-offset-2 text-muted text-left">
-                    <a href="agregar_artista" class="btn btn-primary">Nuevo</a>
+                    <a href="nuevoArtista" class="btn btn-primary">Nuevo</a>
                 </div>
                 <div class="col-xs-4 text-muted text-right">
-                    <a href="buscar_artista" class="btn btn-info">Buscar</a>
+                    <a href="buscarArtista" class="btn btn-info">Buscar</a>
                 </div>
             </div>
         </div>
