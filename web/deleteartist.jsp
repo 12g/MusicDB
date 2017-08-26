@@ -35,11 +35,11 @@
                     <h2 style="color: #ffffff">Borrar Artista?</h2>
                 </div>
                 <div class=" col-xs-6 text-right">
-                    <button type="button" class="btn btn-danger">Si</button>
+                    <a href="lista_artistas" type="button" class="btn btn-danger">Si</a>
                 </div>
                 
                 <div class=" col-xs-6">
-                    <button type="button" class="btn btn-danger">No</button>
+                    <a href="lista_artistas" type="button" class="btn btn-danger">No</a>
                 </div>
             </div>
         </div>

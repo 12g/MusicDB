@@ -18,19 +18,21 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import music_db.Artista;
 
 /**
  *
  * @author cetecom
  */
-@WebServlet(name = "creacionArtista", urlPatterns = {"/agregarArtista"})
-public class creacionArtista extends HttpServlet {
+public class confirmarBorradoArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,9 +48,19 @@ public class creacionArtista extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        RequestDispatcher rd = request.getRequestDispatcher("/nuevo_artistas");
+            
+            int id = Integer.valueOf( request.getParameter("id") );
+            
+            HttpSession session = request.getSession(); //obtiene la sesion del usuario o la crea
+            
+            List<Artista> artistas = (ArrayList<Artista>)session.getAttribute("artistas");
+            artistas.remove( id );
+            
+            
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/lista_artistas");
         
-        rd.forward(request, response);
+            rd.forward(request, response);
         }
     }
 

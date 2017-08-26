@@ -8,7 +8,14 @@
         <servlet-name>VerArtistaServlet</servlet-name>
         <servlet-class>servlets.datosArtista</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>CreacionArtistaServlet</servlet-name>
+        <servlet-class>servlets.creacionArtista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorradoArtistaServlet</servlet-name>
+        <servlet-class>servlets.creacionArtista</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>ListarArtistasJSP</servlet-name>
         <jsp-file>listartist.jsp</jsp-file>
@@ -21,7 +28,26 @@
         <servlet-name>BuscarArtistaJSP</servlet-name>
         <jsp-file>searchartist.jsp</jsp-file>
     </servlet>
-    
+    <servlet>
+        <servlet-name>CreacionArtistaJSP</servlet-name>
+        <jsp-file>newartist.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>BorradoArtistaJSP</servlet-name>
+        <jsp-file>deleteartist.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>DatosArtistaJSP</servlet-name>
+        <jsp-file>deleteartist.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>confirmarBorradoServlet</servlet-name>
+        <servlet-class>servlets.confirmarBorradoArtista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DatosArtistaServlet</servlet-name>
+        <servlet-class>DatosArtista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -30,7 +56,14 @@
         <servlet-name>VerArtistaServlet</servlet-name>
         <url-pattern>/verArtista</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>CreacionArtistaServlet</servlet-name>
+        <url-pattern>/nuevoArtista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorradoArtistaServlet</servlet-name>
+        <url-pattern>/borrarArtista*</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListarArtistasJSP</servlet-name>
         <url-pattern>/lista_artistas</url-pattern>
@@ -43,7 +76,22 @@
         <servlet-name>BuscarArtistaJSP</servlet-name>
         <url-pattern>/buscar_artista</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>CreacionArtistaJSP</servlet-name>
+        <url-pattern>/nuevo_artistas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorradoArtistaJSP</servlet-name>
+        <url-pattern>/borrar_artista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmarBorradoServlet</servlet-name>
+        <url-pattern>/confirmarBorrado*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DatosArtistaServlet</servlet-name>
+        <url-pattern>/verArtista*</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

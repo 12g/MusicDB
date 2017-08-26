@@ -14,13 +14,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,8 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author cetecom
  */
-@WebServlet(name = "creacionArtista", urlPatterns = {"/agregarArtista"})
-public class creacionArtista extends HttpServlet {
+public class DatosArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,9 +43,9 @@ public class creacionArtista extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        RequestDispatcher rd = request.getRequestDispatcher("/nuevo_artistas");
+            RequestDispatcher rd = request.getRequestDispatcher("/info_artistas");
         
-        rd.forward(request, response);
+            rd.forward(request, response);
         }
     }
 

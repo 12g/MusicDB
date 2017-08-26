@@ -42,8 +42,8 @@
                                     <td class="text-center"><c:out default="X" value="${artista.fechaNac}" ></c:out></td>
                                     <td class="text-center"><c:out default="X" value="${artista.albumes.size()}" ></c:out></td>
                                     <td class="text-right">
-                                        <a href="verArtista?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
-                                        <a href="editarArtista?id=${artistaID}" class="btn btn-warning btn-xs text-center" style="width:24px"><span class="oi oi-pencil"></span></a>
+                                        <a href="infoartist.jsp" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
+                                        <a href="editartist.jsp" class="btn btn-warning btn-xs text-center" style="width:24px"><span class="oi oi-pencil"></span></a>
                                         <a href="borrarArtista?id=${artistaID}" class="btn btn-danger btn-xs text-center" style="width:24px"><span class="oi oi-trash"></span></a>
                                     </td>
                                 </tr>
@@ -55,7 +55,7 @@
                     <a href="nuevoArtista" class="btn btn-primary">Nuevo</a>
                 </div>
                 <div class="col-xs-4 text-muted text-right">
-                    <a href="buscarArtista" class="btn btn-info">Buscar</a>
+                    <a href="buscar_artista" class="btn btn-info">Buscar</a>
                 </div>
             </div>
         </div>

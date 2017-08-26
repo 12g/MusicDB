@@ -1,6 +1,6 @@
 <%-- 
-    Document   : info_artista
-    Created on : 26-ago-2017, 14:55:07
+    Document   : editartist
+    Created on : 26-ago-2017, 16:16:52
     Author     : cetecom
 --%>
 
@@ -21,7 +21,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-muted">
-                    <p>Esta página mostrará informacion del artista</p>
+                    <p>Esta página editará información del artista</p>
                 </div>
             </div>
         </div>
