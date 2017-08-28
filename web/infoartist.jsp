@@ -1,7 +1,7 @@
 <%-- 
-    Document   : info_artista
+    Document   : infoartist
     Created on : 26-ago-2017, 14:55:07
-    Author     : cetecom
+    Author     : benja
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

@@ -14,20 +14,27 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import music_db.Artista;
 
 /**
  *
  * @author cetecom
  */
-public class DatosArtista extends HttpServlet {
+@WebServlet(name = "eliminacionArtista", urlPatterns = {"/borrarArtista"})
+public class EliminacionArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,9 +49,10 @@ public class DatosArtista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            RequestDispatcher rd = request.getRequestDispatcher("/info_artistas");
-        
+            int id = Integer.valueOf( request.getParameter("id") );
+            request.setAttribute("id", id);
+            
+            RequestDispatcher rd = request.getRequestDispatcher("/borrar_artista");
             rd.forward(request, response);
         }
     }

@@ -5,16 +5,24 @@
         <servlet-class>servlets.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>VerArtistaServlet</servlet-name>
-        <servlet-class>servlets.datosArtista</servlet-class>
+        <servlet-name>DatosArtistaServlet</servlet-name>
+        <servlet-class>servlets.DatosArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreacionArtistaServlet</servlet-name>
-        <servlet-class>servlets.creacionArtista</servlet-class>
+        <servlet-class>servlets.CreacionArtista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BusquedaArtistaServlet</servlet-name>
+        <servlet-class>servlets.BusquedaArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BorradoArtistaServlet</servlet-name>
-        <servlet-class>servlets.creacionArtista</servlet-class>
+        <servlet-class>servlets.EliminacionArtista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AceptarEliminacionServlet</servlet-name>
+        <servlet-class>servlets.AceptarEliminacionArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListarArtistasJSP</servlet-name>
@@ -25,76 +33,65 @@
         <jsp-file>infoartist.jsp</jsp-file>
     </servlet>
     <servlet>
-        <servlet-name>BuscarArtistaJSP</servlet-name>
-        <jsp-file>searchartist.jsp</jsp-file>
-    </servlet>
-    <servlet>
         <servlet-name>CreacionArtistaJSP</servlet-name>
         <jsp-file>newartist.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>BuscarArtistaJSP</servlet-name>
+        <jsp-file>searchartist.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>BorradoArtistaJSP</servlet-name>
         <jsp-file>deleteartist.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>DatosArtistaJSP</servlet-name>
-        <jsp-file>deleteartist.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>confirmarBorradoServlet</servlet-name>
-        <servlet-class>servlets.confirmarBorradoArtista</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DatosArtistaServlet</servlet-name>
-        <servlet-class>DatosArtista</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VerArtistaServlet</servlet-name>
-        <url-pattern>/verArtista</url-pattern>
+        <servlet-name>DatosArtistaServlet</servlet-name>
+        <url-pattern>/verArtista*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreacionArtistaServlet</servlet-name>
-        <url-pattern>/nuevoArtista</url-pattern>
+        <url-pattern>/crearArtista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BusquedaArtistaServlet</servlet-name>
+        <url-pattern>/buscarArtista</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BorradoArtistaServlet</servlet-name>
         <url-pattern>/borrarArtista*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AceptarEliminacionServlet</servlet-name>
+        <url-pattern>/confirmarBorrado*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ListarArtistasJSP</servlet-name>
         <url-pattern>/lista_artistas</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VerArtistaJSP</servlet-name>
-        <url-pattern>/info_artista</url-pattern>
+        <servlet-name>CreacionArtistaJSP</servlet-name>
+        <url-pattern>/nuevo_artista</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BuscarArtistaJSP</servlet-name>
         <url-pattern>/buscar_artista</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreacionArtistaJSP</servlet-name>
-        <url-pattern>/nuevo_artistas</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>BorradoArtistaJSP</servlet-name>
         <url-pattern>/borrar_artista</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>confirmarBorradoServlet</servlet-name>
-        <url-pattern>/confirmarBorrado*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DatosArtistaServlet</servlet-name>
-        <url-pattern>/verArtista*</url-pattern>
+        <servlet-name>VerArtistaJSP</servlet-name>
+        <url-pattern>/datos_artista*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <absolute-ordering/>
 </web-app>

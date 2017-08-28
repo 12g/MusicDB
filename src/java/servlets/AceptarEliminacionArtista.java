@@ -32,7 +32,7 @@ import music_db.Artista;
  *
  * @author cetecom
  */
-public class confirmarBorradoArtista extends HttpServlet {
+public class AceptarEliminacionArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
