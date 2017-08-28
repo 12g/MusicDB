@@ -26,14 +26,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import music_db.Album;
 import music_db.Artista;
 
 /**
  *
  * @author cetecom
  */
-public class datosArtista extends HttpServlet {
+public class InfoArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +47,8 @@ public class datosArtista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            
+            out.print("test");
             
             HttpSession session = request.getSession();
             List<Artista> artistas = (ArrayList<Artista>)session.getAttribute("artistas"); 
@@ -63,8 +63,7 @@ public class datosArtista extends HttpServlet {
             request.setAttribute("año", añoArtista);
 
             
-            RequestDispatcher rd = request.getRequestDispatcher("lista_artistas");
-
+            RequestDispatcher rd = request.getRequestDispatcher("datos_artista");
             rd.forward(request, response);
         }
     }

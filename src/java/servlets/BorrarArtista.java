@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,7 +33,8 @@ import music_db.Artista;
  *
  * @author cetecom
  */
-public class AceptarEliminacionArtista extends HttpServlet {
+@WebServlet(name = "eliminacionArtista", urlPatterns = {"/borrarArtista"})
+public class BorrarArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,19 +49,10 @@ public class AceptarEliminacionArtista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
             int id = Integer.valueOf( request.getParameter("id") );
+            request.setAttribute("id", id);
             
-            HttpSession session = request.getSession(); //obtiene la sesion del usuario o la crea
-            
-            List<Artista> artistas = (ArrayList<Artista>)session.getAttribute("artistas");
-            artistas.remove( id );
-            
-            
-            
-            RequestDispatcher rd = request.getRequestDispatcher("/lista_artistas");
-        
+            RequestDispatcher rd = request.getRequestDispatcher("borrar_artista");
             rd.forward(request, response);
         }
     }

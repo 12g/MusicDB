@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 cetecom
+ * Copyright (C) 2017 benja
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,23 +18,19 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import music_db.Artista;
 
 /**
  *
- * @author cetecom
+ * @author benja
  */
-@WebServlet(name = "eliminacionArtista", urlPatterns = {"/borrarArtista"})
-public class EliminacionArtista extends HttpServlet {
+@WebServlet(name = "BusquedaArtista", urlPatterns = {"/BusquedaArtista"})
+public class BusquedaArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,10 +45,8 @@ public class EliminacionArtista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int id = Integer.valueOf( request.getParameter("id") );
-            request.setAttribute("id", id);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("/borrar_artista");
+            RequestDispatcher rd = request.getRequestDispatcher("buscar_artista");
+
             rd.forward(request, response);
         }
     }

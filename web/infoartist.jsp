@@ -21,7 +21,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-muted">
-                    <p>Esta página mostrará informacion del artista</p>
+                    ${nombre}
+                    <br>
+                    ${año}
+                    <br>
                 </div>
             </div>
         </div>

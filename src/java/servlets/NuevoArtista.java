@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author cetecom
  */
 @WebServlet(name = "creacionArtista", urlPatterns = {"/agregarArtista"})
-public class creacionArtista extends HttpServlet {
+public class NuevoArtista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,7 +46,7 @@ public class creacionArtista extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-        RequestDispatcher rd = request.getRequestDispatcher("/nuevo_artistas");
+        RequestDispatcher rd = request.getRequestDispatcher("nuevo_artista");
         
         rd.forward(request, response);
         }

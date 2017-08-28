@@ -6,11 +6,11 @@
     </servlet>
     <servlet>
         <servlet-name>DatosArtistaServlet</servlet-name>
-        <servlet-class>servlets.DatosArtista</servlet-class>
+        <servlet-class>servlets.InfoArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreacionArtistaServlet</servlet-name>
-        <servlet-class>servlets.CreacionArtista</servlet-class>
+        <servlet-class>servlets.NuevoArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BusquedaArtistaServlet</servlet-name>
@@ -18,11 +18,11 @@
     </servlet>
     <servlet>
         <servlet-name>BorradoArtistaServlet</servlet-name>
-        <servlet-class>servlets.EliminacionArtista</servlet-class>
+        <servlet-class>servlets.BorrarArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AceptarEliminacionServlet</servlet-name>
-        <servlet-class>servlets.AceptarEliminacionArtista</servlet-class>
+        <servlet-class>servlets.ConfirmarEliminacionArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListarArtistasJSP</servlet-name>
@@ -47,10 +47,6 @@
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DatosArtistaServlet</servlet-name>
-        <url-pattern>/verArtista*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreacionArtistaServlet</servlet-name>
@@ -86,7 +82,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VerArtistaJSP</servlet-name>
-        <url-pattern>/datos_artista*</url-pattern>
+        <url-pattern>/datos_artista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DatosArtistaServlet</servlet-name>
+        <url-pattern>/verArtista*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
