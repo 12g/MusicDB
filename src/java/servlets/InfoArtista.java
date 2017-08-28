@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 cetecom
+ * Copyright (C) 2017 benja
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ import music_db.Artista;
 
 /**
  *
- * @author cetecom
+ * @author benja
  */
 public class InfoArtista extends HttpServlet {
 
@@ -47,9 +47,6 @@ public class InfoArtista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            out.print("test");
-            
             HttpSession session = request.getSession();
             List<Artista> artistas = (ArrayList<Artista>)session.getAttribute("artistas"); 
             int idArtista = Integer.valueOf( request.getParameter("id") );

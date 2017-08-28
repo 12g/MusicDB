@@ -5,10 +5,6 @@
         <servlet-class>servlets.Login</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>DatosArtistaServlet</servlet-name>
-        <servlet-class>servlets.InfoArtista</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>CreacionArtistaServlet</servlet-name>
         <servlet-class>servlets.NuevoArtista</servlet-class>
     </servlet>
@@ -43,6 +39,10 @@
     <servlet>
         <servlet-name>BorradoArtistaJSP</servlet-name>
         <jsp-file>deleteartist.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>CtrlInfoArtista</servlet-name>
+        <servlet-class>servlets.InfoArtista</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -85,8 +85,8 @@
         <url-pattern>/datos_artista</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DatosArtistaServlet</servlet-name>
-        <url-pattern>/verArtista*</url-pattern>
+        <servlet-name>CtrlInfoArtista</servlet-name>
+        <url-pattern>/verArtista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

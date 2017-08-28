@@ -73,7 +73,7 @@ public class Login extends HttpServlet {
         */
         
         //Mandamos al cliente a la pagina
-        RequestDispatcher rd = request.getRequestDispatcher("/lista_artistas");
+        RequestDispatcher rd = request.getRequestDispatcher("lista_artistas");
         
         rd.forward(request, response);
     }

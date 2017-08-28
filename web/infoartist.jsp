@@ -21,10 +21,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-muted">
-                    ${nombre}
-                    <br>
-                    ${año}
-                    <br>
+                    <br/>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h1>${nombre}</h1>
+                            <p>Año de formación: ${año}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
