@@ -33,7 +33,7 @@ import music_db.Artista;
  *
  * @author cetecom
  */
-@WebServlet(name = "eliminacionArtista", urlPatterns = {"/borrarArtista"})
+
 public class BorrarArtista extends HttpServlet {
 
     /**

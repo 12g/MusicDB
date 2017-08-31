@@ -29,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author benja
  */
-@WebServlet(name = "BusquedaArtista", urlPatterns = {"/BusquedaArtista"})
+
 public class BusquedaArtista extends HttpServlet {
 
     /**
