@@ -81,6 +81,20 @@ public class Redireccionamientos extends HttpServlet {
         else if (servletSolicitado.equals("crearArtista")) {
             dispatcherString = "nuevo_artista";
         }
+        else if (servletSolicitado.equals("verArtista")) {
+            dispatcherString = "datos_artista";
+            
+            List<Artista> artistas = (ArrayList<Artista>)session.getAttribute("artistas"); 
+            int idArtista = Integer.valueOf(request.getParameter("id"));
+            
+            Artista artista = artistas.get(idArtista);
+
+            String nombreArtista = artista.getNombre();
+            int añoArtista = artista.getFechaNac();
+            
+            request.setAttribute("nombre", nombreArtista);
+            request.setAttribute("año", añoArtista);
+        }
         else {
             dispatcherString = "error";
         }
