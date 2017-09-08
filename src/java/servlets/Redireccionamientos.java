@@ -34,7 +34,7 @@ import music_db.Artista;
  *
  * @author Benjamin "12g" La Madrid
  */
-public class Login extends HttpServlet {
+public class Redireccionamientos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -49,31 +49,47 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
+        String servletSolicitado = request.getRequestURI();
+        String dispatcherString;
         HttpSession session = request.getSession(); //obtiene la sesion del usuario o la crea
-        session.setAttribute("email", email);
-        session.setAttribute("password", password);
-        //"artistas" sera un objeto ArrayList y se encargara de almacenar todos los artistas, actuando como una BD
-        List<Artista> artistas =  new ArrayList<Artista>();
-        artistas.add(new Artista("Black Sabbath", 1968, true));
-        artistas.add(new Artista("David Bowie", 1947, true));
-        artistas.add(new Artista("Neutral Milk Hotel", 1989, true));
-        artistas.add(new Artista("Juan Gabriel", 1950, true));
-        session.setAttribute("artistas", artistas); 
         
-        /* NO USAR ESTE CODIGO TODAVIA
+        if (servletSolicitado.equals("login")) {
+            dispatcherString = "lista_artistas";
+            
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+   
+            session.setAttribute("email", email);
+            session.setAttribute("password", password);
+            
+            List<Artista> artistas =  new ArrayList<Artista>();
+            artistas.add(new Artista("Black Sabbath", 1968, true));
+            artistas.add(new Artista("David Bowie", 1947, true));
+            artistas.add(new Artista("Neutral Milk Hotel", 1989, true));
+            artistas.add(new Artista("Juan Gabriel", 1950, true));
+            session.setAttribute("artistas", artistas); 
+        }
+        else if (servletSolicitado.equals("")) {
+            dispatcherString = "borrar_artista";
+            
+            int id = Integer.valueOf( request.getParameter("id") );
+            request.setAttribute("id", id);
+        }
+        else {
+            dispatcherString = "error";
+        }
+
+        /* CODIGO ALTERNATIVO
             //Este Servlet fue llamado con un método POST, para recibir la información del formulario de login
             //Asumimos que además el cliente que completó dicho formulario espera ser llevado a otra página
             //Re-procesaremos la petición "request" para que desde aquí use el método GET
             //Para mayo HTTP, https://en.wikipedia.org/wiki/HTTP_303
             //response.setStatus(303);
-            //response.setHeader("Location", "/music-wiki/lista_artistas");
+            //response.setHeader("Location", "/music-wiki/"+dispatcherString);
         */
         
         //Mandamos al cliente a la pagina
-        RequestDispatcher rd = request.getRequestDispatcher("lista_artistas");
+        RequestDispatcher rd = request.getRequestDispatcher(dispatcherString);
         
         rd.forward(request, response);
     }

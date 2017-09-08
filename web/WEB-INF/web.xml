@@ -2,7 +2,7 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>Servlet_login</servlet-name>
-        <servlet-class>servlets.Login</servlet-class>
+        <servlet-class>servlets.Redireccionamientos</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Servlet_crearArtista</servlet-name>
@@ -11,10 +11,6 @@
     <servlet>
         <servlet-name>Servlet_buscarArtista</servlet-name>
         <servlet-class>servlets.BusquedaArtista</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Servlet_borrarArtista</servlet-name>
-        <servlet-class>servlets.BorrarArtista</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Servlet_confirmarEliminacion</servlet-name>
@@ -83,10 +79,6 @@
     <servlet-mapping>
         <servlet-name>Servlet_confirmarEliminacion</servlet-name>
         <url-pattern>/confirmarBorrado</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Servlet_borrarArtista</servlet-name>
-        <url-pattern>/borrarArtista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
