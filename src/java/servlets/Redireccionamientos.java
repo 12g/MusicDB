@@ -69,7 +69,7 @@ public class Redireccionamientos extends HttpServlet {
             artistas.add(new Artista("Juan Gabriel", 1950, true));
             session.setAttribute("artistas", artistas); 
         }
-        else if (servletSolicitado.equals("")) {
+        else if (servletSolicitado.equals("borrarArtista")) {
             dispatcherString = "borrar_artista";
             
             int id = Integer.valueOf( request.getParameter("id") );
