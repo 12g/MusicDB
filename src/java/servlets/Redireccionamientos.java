@@ -75,6 +75,9 @@ public class Redireccionamientos extends HttpServlet {
             int id = Integer.valueOf( request.getParameter("id") );
             request.setAttribute("id", id);
         }
+        else if (servletSolicitado.equals("buscarArtistas")) {
+            dispatcherString = "buscar_artista";
+        }
         else {
             dispatcherString = "error";
         }

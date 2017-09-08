@@ -9,10 +9,6 @@
         <servlet-class>servlets.NuevoArtista</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Servlet_buscarArtista</servlet-name>
-        <servlet-class>servlets.BusquedaArtista</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>Servlet_confirmarEliminacion</servlet-name>
         <servlet-class>servlets.ConfirmarEliminacionArtista</servlet-class>
     </servlet>
@@ -43,10 +39,6 @@
     <servlet-mapping>
         <servlet-name>Servlet_crearArtista</servlet-name>
         <url-pattern>/crearArtista</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Servlet_buscarArtista</servlet-name>
-        <url-pattern>/buscarArtista</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>JSP_listarArtistas</servlet-name>
@@ -80,6 +72,7 @@
         <servlet-name>Servlet_Redireccion</servlet-name>
         <url-pattern>/login</url-pattern>
         <url-pattern>/borrarArtista</url-pattern>
+        <url-pattern>/buscarArtista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
