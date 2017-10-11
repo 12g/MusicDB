@@ -16,10 +16,37 @@
  */
 package dao;
 
+import java.util.List;
+import java.util.ListIterator;
+import model.Usuario;
+
 /**
  *
  * @author benjamin
  */
-public class UsuariosDAO {
+public class UsuariosDAO implements UsuariosDAOInterfaz {
+    private List<Usuario> listaUsuarios;
+    
+    
+    @Override
+    public Usuario getUsuarioByNameAndPass(String username, String userpass) throws DAOException {
+        if (listaUsuarios.size() > 0) {
+            try {
+                ListIterator<Usuario> iterador = listaUsuarios.listIterator();
+                do {
+                    Usuario puntero = iterador.next();
+                } while (iterador != null);
+            }
+            catch (DAOException exc) {
+                throw exc;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Usuario> getUsuariosList() {
+        return listaUsuarios;
+    }
     
 }

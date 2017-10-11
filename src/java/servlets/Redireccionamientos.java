@@ -63,10 +63,10 @@ public class Redireccionamientos extends HttpServlet {
             session.setAttribute("password", password);
             
             List<Artista> artistas =  new ArrayList<Artista>();
-            artistas.add(new Artista("Black Sabbath", 1968, true));
-            artistas.add(new Artista("David Bowie", 1947, true));
-            artistas.add(new Artista("Neutral Milk Hotel", 1989, true));
-            artistas.add(new Artista("Juan Gabriel", 1950, true));
+            artistas.add(new Artista("Black Sabbath", 1968));
+            artistas.add(new Artista("David Bowie", 1947));
+            artistas.add(new Artista("Neutral Milk Hotel", 1989));
+            artistas.add(new Artista("Juan Gabriel", 1950));
             session.setAttribute("artistas", artistas); 
         }
         else if (servletSolicitado.equals("borrarArtista")) {
