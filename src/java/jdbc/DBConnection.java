@@ -16,10 +16,35 @@
  */
 package jdbc;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author benjamin
  */
 public class DBConnection {
-    
+    private static Connection conexion;
+    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
+    private static final String DB_URI = "jdbc:mysql://localhost/DEJ_Music";
+    private static final String DB_USER = "root"; //cambiar si es necesario
+    private static final String DB_PASS = ""; //cambiar si es necesario
+       
+    public static Connection getInstance() throws SQLException {
+        if(conexion == null || conexion.isClosed()){
+            conexion = getConexion();
+        }
+        return conexion;
+    }
+
+    private static Connection getConexion() throws SQLException {
+        try {
+            Class.forName(DB_DRIVER);
+            return DriverManager.getConnection(DB_URI, DB_USER, DB_PASS);
+        
+        } catch (ClassNotFoundException | SQLException ex) {            
+            throw new SQLException(ex);
+        }
+    }
 }
