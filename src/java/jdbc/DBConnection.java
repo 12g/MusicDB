@@ -31,13 +31,20 @@ public class DBConnection {
     private static final String DB_USER = "root"; //cambiar si es necesario
     private static final String DB_PASS = ""; //cambiar si es necesario
        
+    /** 
+     * Obtiene (o crea) la instancia existente del objeto de conexión a BD. 
+     * Este método puede ser usado en cualquier lugar de la aplicación donde sea 
+     * visible (esto es, que tenga el import requerido).
+     * @return El objeto Connection genérico usado como conexión a la BD.
+     * @throws SQLException Si hay errores de conexión a la BD.
+     */
     public static Connection getInstance() throws SQLException {
         if(conexion == null || conexion.isClosed()){
             conexion = getConexion();
         }
         return conexion;
     }
-
+    
     private static Connection getConexion() throws SQLException {
         try {
             Class.forName(DB_DRIVER);
