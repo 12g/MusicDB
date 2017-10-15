@@ -28,10 +28,6 @@
         <servlet-name>JSP_borrarArtista</servlet-name>
         <jsp-file>deleteartist.jsp</jsp-file>
     </servlet>
-    <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>servlets.Login</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>JSP_listarArtistas</servlet-name>
         <url-pattern>/jsp/artista/todos</url-pattern>
@@ -59,19 +55,20 @@
     <servlet-mapping>
         <servlet-name>Servlet_Redireccion</servlet-name>
         <url-pattern>/login</url-pattern>
-        <url-pattern>/artista/borrar</url-pattern>
-        <url-pattern>/artista/ver</url-pattern>
-        <url-pattern>/artista/crear</url-pattern>
-        <url-pattern>/artista/buscar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Login</servlet-name>
+        <url-pattern>/artista/borrar/no</url-pattern>
         <url-pattern>/login/confirmar</url-pattern>
+        <url-pattern>/artista/buscar</url-pattern>
+        <url-pattern>/artista/borrar</url-pattern>
+        <url-pattern>/artista/crear</url-pattern>
+        <url-pattern>/artista/ver</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
     <absolute-ordering/>
 </web-app>

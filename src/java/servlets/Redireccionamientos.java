@@ -56,7 +56,7 @@ public class Redireccionamientos extends HttpServlet {
         String mapeoXMLDespacho;
         HttpSession sesion = peticion.getSession(); //Obtiene o crea la sesion
         switch (servletSolicitado) {
-            case "login":
+            case "login/confirmar":
             {
                 String formulario_email, formulario_password;
                 
@@ -110,6 +110,11 @@ public class Redireccionamientos extends HttpServlet {
                 mapeoXMLDespacho = "jsp/artista/ver";
                 peticion.setAttribute("nombre", nombreArtista);
                 peticion.setAttribute("año", añoArtista);
+                break;
+            }
+            case "artista/borrar/no":
+            {
+                mapeoXMLDespacho = "jsp/artista/todos";
                 break;
             }
             default:
