@@ -37,82 +37,118 @@ import model.Artista;
 public class Redireccionamientos extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Procesa peticiones con los métodos <code>GET</code> y <code>POST</code>.
      *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @param peticion La petición recibida.
+     * @param respuesta La respuesta a mandar.
+     * @throws ServletException si ocurriera un error de servlet.
+     * @throws IOException si ocurriera un error del sistema entrada/salida
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest(HttpServletRequest peticion, HttpServletResponse respuesta)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         
-        String servletSolicitado = request.getRequestURI();
-        String dispatcherString;
-        HttpSession session = request.getSession(); //obtiene la sesion del usuario o la crea
+        boolean usarPracticaHTTP303 = false;
         
-        if (servletSolicitado.equals("login")) {
-            dispatcherString = "lista_artistas";
-            
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-   
-            session.setAttribute("email", email);
-            session.setAttribute("password", password);
-            
-            List<Artista> artistas =  new ArrayList<Artista>();
-            artistas.add(new Artista("Black Sabbath", 1968));
-            artistas.add(new Artista("David Bowie", 1947));
-            artistas.add(new Artista("Neutral Milk Hotel", 1989));
-            artistas.add(new Artista("Juan Gabriel", 1950));
-            session.setAttribute("artistas", artistas); 
-        }
-        else if (servletSolicitado.equals("borrarArtista")) {
-            dispatcherString = "borrar_artista";
-            
-            int id = Integer.valueOf( request.getParameter("id") );
-            request.setAttribute("id", id);
-        }
-        else if (servletSolicitado.equals("buscarArtistas")) {
-            dispatcherString = "buscar_artista";
-        }
-        else if (servletSolicitado.equals("crearArtista")) {
-            dispatcherString = "nuevo_artista";
-        }
-        else if (servletSolicitado.equals("verArtista")) {
-            dispatcherString = "datos_artista";
-            
-            List<Artista> artistas = (ArrayList<Artista>)session.getAttribute("artistas"); 
-            int idArtista = Integer.valueOf(request.getParameter("id"));
-            
-            Artista artista = artistas.get(idArtista);
+        respuesta.setContentType("text/html;charset=UTF-8");
+        
+        //La URL que el usuario hubiese ingresado o a la que haya sido enviado
+        String servletSolicitado = peticion.getRequestURI(); 
+        String mapeoXMLDespacho;
+        HttpSession sesion = peticion.getSession(); //Obtiene o crea la sesion
+        switch (servletSolicitado) {
+            case "login":
+            {
+                String formulario_email, formulario_password;
+                
+                formulario_email = peticion.getParameter("email");
+                formulario_password = peticion.getParameter("password");
+                
+                //mandamos la información con el Login.Do
+                if ((sesion = Login.Do(sesion, formulario_email, formulario_password)) != null) {
+                    List<Artista> artistas = llenarListaConEjemplos(new ArrayList<>());
+                    sesion.setAttribute("artistas", artistas);
 
-            String nombreArtista = artista.getNombre();
-            int añoArtista = artista.getFechaNac();
-            
-            request.setAttribute("nombre", nombreArtista);
-            request.setAttribute("año", añoArtista);
+                    mapeoXMLDespacho = "jsp/artista/todos";
+                    break;
+                }
+                //sin break, esto se va al case default
+            }
+            case "artista/borrar":
+            {
+                int idArtista;
+                
+                idArtista = Integer.valueOf( peticion.getParameter("id") );
+                
+                mapeoXMLDespacho = "jsp/artista/borrar";
+                peticion.setAttribute("id", idArtista);
+                break;
+            }
+            case "artista/buscar":
+            {
+                mapeoXMLDespacho = "jsp/artista/buscar";
+                break;
+            }
+            case "artista/crear":
+            {
+                mapeoXMLDespacho = "jsp/artista/crear";
+                break;
+            }
+            case "artista/ver":
+            {
+                List<Artista> todosMisArtistas;
+                int idArtista;
+                Artista artistaEncontrado;
+                String nombreArtista;
+                int añoArtista;
+
+                todosMisArtistas    = (ArrayList<Artista>)sesion.getAttribute("artistas");
+                idArtista           = Integer.valueOf(peticion.getParameter("id"));
+                artistaEncontrado   = todosMisArtistas.get(idArtista);
+                nombreArtista       = artistaEncontrado.getNombre();
+                añoArtista          = artistaEncontrado.getFechaNac();
+
+                mapeoXMLDespacho = "jsp/artista/ver";
+                peticion.setAttribute("nombre", nombreArtista);
+                peticion.setAttribute("año", añoArtista);
+                break;
+            }
+            default:
+            {
+                mapeoXMLDespacho = "jsp/error";
+                break;
+            }
+        }
+
+        
+        //Código extra - Una microinvestigación en buenas prácticas
+        if (usarPracticaHTTP303) {
+            respuesta = etiquetarRedireccion303 (respuesta, mapeoXMLDespacho);
         }
         else {
-            dispatcherString = "error";
-        }
+            //Mandamos al cliente a la página
+            RequestDispatcher rd = peticion.getRequestDispatcher(mapeoXMLDespacho);
 
-        /* CODIGO ALTERNATIVO
-            //Este Servlet fue llamado con un método POST, para recibir la información del formulario de login
-            //Asumimos que además el cliente que completó dicho formulario espera ser llevado a otra página
-            //Re-procesaremos la petición "request" para que desde aquí use el método GET
-            //Para mayo HTTP, https://en.wikipedia.org/wiki/HTTP_303
-            //response.setStatus(303);
-            //response.setHeader("Location", "/music-wiki/"+dispatcherString);
-        */
-        
-        //Mandamos al cliente a la pagina
-        RequestDispatcher rd = request.getRequestDispatcher(dispatcherString);
-        
-        rd.forward(request, response);
+            rd.forward(peticion, respuesta);
+        }
+        //Termina el proceso de redirección
     }
+    
+    /**
+     * Redirecciona la petición, devolviendo un código de respuesta 303. 
+     * Esto es, recibe la información de un formulario
+     * y manda al usuario a realizar otra petición para recibir su información.
+     * @param respuesta La repsuesta.
+     * @param mapeoXMLDespacho la URL que el usuario va a tener que solicitar.
+     * @return 
+     */
+    private HttpServletResponse etiquetarRedireccion303 (HttpServletResponse respuesta, String mapeoXMLDespacho) {
+        //Ponemos el código de respuesta
+        respuesta.setStatus(303);
+        //y setHeader nos permite MANDAR ese código al usuario
+        respuesta.setHeader("Location", "/music-wiki/"+mapeoXMLDespacho);
+        return respuesta;
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -152,5 +188,19 @@ public class Redireccionamientos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    /**
+     * Añade los siguientes artistas a una lista:
+     * Black Sabbath, David Bowie, Neutral Milk Hotel, Juan Gabriel
+     * @param artistas La lista a la cual agregar estos objetos Artista.
+     * @return La lista que fue puesta como parámetro del método.
+     */
+    private List<Artista> llenarListaConEjemplos(List<Artista> artistas) {
+        artistas.add(new Artista("Black Sabbath", 1968));
+        artistas.add(new Artista("David Bowie", 1947));
+        artistas.add(new Artista("Neutral Milk Hotel", 1989));
+        artistas.add(new Artista("Juan Gabriel", 1950));
+        return artistas;
+    }
 
 }

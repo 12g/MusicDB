@@ -25,9 +25,6 @@
                         <div class="form-group">
                             <label for="inputEmail">Usuario</label>
                             <input id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su email..." />
-                            <small id="emailHelp" class="form-text text-muted">
-                                Nunca compartiremos su correo electrónico con nadie más.
-                            </small>
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Contraseña</label>
@@ -39,12 +36,8 @@
                     <br/>
                 </div>
             </div>
-            <div class="row">
-                <div class="col text-center">
-                    <a class="text-warning" href="http://www.centraldejazz.com/wp-content/uploads/2014/10/guitarra-jazz-clases-1080x675.jpg">Imagen original</a>
-                </div>
-            </div>
         </div>
+        <%@include file="WEB-INF/jspf/segment_footer.jspf" %>
         <script src="bootstrap/js/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="bootstrap/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     </body>
