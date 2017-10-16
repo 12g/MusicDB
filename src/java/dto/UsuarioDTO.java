@@ -23,7 +23,7 @@ package dto;
 public class UsuarioDTO {
     private String username;
     private String password;
-
+    
     public String getUsername() {
         return username;
     }
@@ -38,5 +38,10 @@ public class UsuarioDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }    
+    }
+
+    public UsuarioDTO(String username, String password) {
+        setUsername(username);
+        setPassword(password);
+    }
 }

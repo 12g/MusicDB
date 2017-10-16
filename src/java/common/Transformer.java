@@ -16,10 +16,25 @@
  */
 package common;
 
+import dto.*;
+import model.*;
+
 /**
  *
  * @author benjamin
  */
-public class ModelToDTO {
+public class Transformer {
+    public static Usuario UsuarioDTOToModel(UsuarioDTO origen) {
+        return new Usuario(origen.getUsername(), origen.getPassword());
+    }
+    public static UsuarioDTO UsuarioModelToDTO(Usuario origen) {
+        return new UsuarioDTO(origen.getUsername(), origen.getPassword());
+    }
     
+    public static Album AlbumDTOToModel(AlbumDTO origen) {
+        return new Album(origen.getNombre(), origen.getAñoLanzamiento());
+    }
+    public static AlbumDTO AlbumModelToDTO(Album origen) {
+        return new AlbumDTO(origen.getNombre(), origen.getAñoLanzamiento());
+    }
 }
