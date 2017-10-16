@@ -38,20 +38,23 @@ public class DBConnection {
      * @return El objeto Connection genérico usado como conexión a la BD.
      * @throws SQLException Si hay errores de conexión a la BD.
      */
-    public static Connection getInstance() throws SQLException {
-        if(conexion == null || conexion.isClosed()){
+    public static Connection getInstance() throws SQLException, ClassNotFoundException {
+        if (conexion == null || conexion.isClosed()){
             conexion = getConexion();
         }
         return conexion;
     }
     
-    private static Connection getConexion() throws SQLException {
+    private static Connection getConexion() throws SQLException, ClassNotFoundException {
         try {
             Class.forName(DB_DRIVER);
             return DriverManager.getConnection(DB_URI, DB_USER, DB_PASS);
         
-        } catch (ClassNotFoundException | SQLException ex) {            
+        } catch (SQLException ex) {            
             throw new SQLException(ex);
+        } catch (ClassNotFoundException ex) {            
+            throw ex;
         }
+        
     }
 }
