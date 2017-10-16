@@ -52,11 +52,12 @@ public class Redireccionamientos extends HttpServlet {
         respuesta.setContentType("text/html;charset=UTF-8");
         
         //La URL que el usuario hubiese ingresado o a la que haya sido enviado
-        String servletSolicitado = peticion.getRequestURI(); 
-        String mapeoXMLDespacho;
+        String contexto = peticion.getContextPath(); 
+        String servletSolicitado = peticion.getRequestURI().replace(contexto, ""); 
+        String mapeoWebXMLDespacho;
         HttpSession sesion = peticion.getSession(); //Obtiene o crea la sesion
         switch (servletSolicitado) {
-            case "/login/awwwwwwwwwwawwwwwwaconfirmar":
+            case "/login/confirmar":
             {
                 String formulario_email, formulario_password;
                 
@@ -68,32 +69,33 @@ public class Redireccionamientos extends HttpServlet {
                     List<Artista> artistas = llenarListaConEjemplos(new ArrayList<>());
                     sesion.setAttribute("artistas", artistas);
 
-                    mapeoXMLDespacho = "jsp/artista/todos";
+                    mapeoWebXMLDespacho = "/jsp/artista/todos";
+                    System.out.println(mapeoWebXMLDespacho);
                     break;
                 }
                 //sin break, esto se va al case default
             }
-            case "artista/borrar":
+            case "/artista/borrar":
             {
                 int idArtista;
                 
                 idArtista = Integer.valueOf( peticion.getParameter("id") );
                 
-                mapeoXMLDespacho = "jsp/artista/borrar";
+                mapeoWebXMLDespacho = "/jsp/artista/borrar";
                 peticion.setAttribute("id", idArtista);
                 break;
             }
-            case "artista/buscar":
+            case "/artista/buscar":
             {
-                mapeoXMLDespacho = "jsp/artista/buscar";
+                mapeoWebXMLDespacho = "/jsp/artista/buscar";
                 break;
             }
-            case "artista/crear":
+            case "/artista/crear":
             {
-                mapeoXMLDespacho = "jsp/artista/crear";
+                mapeoWebXMLDespacho = "/jsp/artista/crear";
                 break;
             }
-            case "artista/ver":
+            case "/artista/ver":
             {
                 List<Artista> todosMisArtistas;
                 int idArtista;
@@ -107,19 +109,19 @@ public class Redireccionamientos extends HttpServlet {
                 nombreArtista       = artistaEncontrado.getNombre();
                 añoArtista          = artistaEncontrado.getFechaNac();
 
-                mapeoXMLDespacho = "jsp/artista/ver";
+                mapeoWebXMLDespacho = "/jsp/artista/ver";
                 peticion.setAttribute("nombre", nombreArtista);
                 peticion.setAttribute("año", añoArtista);
                 break;
             }
-            case "artista/borrar/no":
+            case "/artista/borrar/no":
             {
-                mapeoXMLDespacho = "jsp/artista/todos";
+                mapeoWebXMLDespacho = "/jsp/artista/todos";
                 break;
             }
             default:
             {
-                mapeoXMLDespacho = "jsp/error";
+                mapeoWebXMLDespacho = "/jsp/error";
                 break;
             }
         }
@@ -127,13 +129,13 @@ public class Redireccionamientos extends HttpServlet {
         
         //Código extra - Una microinvestigación en buenas prácticas
         if (usarPracticaHTTP303) {
-            respuesta = etiquetarRedireccion303 (respuesta, mapeoXMLDespacho);
+            respuesta = etiquetarRedireccion303 (respuesta, mapeoWebXMLDespacho);
         }
         else {
             //Mandamos al cliente a la página
-            RequestDispatcher rd = peticion.getRequestDispatcher(mapeoXMLDespacho);
-
-            rd.forward(peticion, respuesta);
+            RequestDispatcher redireccionador;
+            redireccionador = peticion.getRequestDispatcher(mapeoWebXMLDespacho);
+            redireccionador.forward(peticion, respuesta);
         }
         //Termina el proceso de redirección
     }
@@ -143,14 +145,14 @@ public class Redireccionamientos extends HttpServlet {
      * Esto es, recibe la información de un formulario
      * y manda al usuario a realizar otra petición para recibir su información.
      * @param respuesta La repsuesta.
-     * @param mapeoXMLDespacho la URL que el usuario va a tener que solicitar.
+     * @param mapeoWebXMLDespacho la URL que el usuario va a tener que solicitar.
      * @return 
      */
-    private HttpServletResponse etiquetarRedireccion303 (HttpServletResponse respuesta, String mapeoXMLDespacho) {
+    private HttpServletResponse etiquetarRedireccion303 (HttpServletResponse respuesta, String mapeoWebXMLDespacho) {
         //Ponemos el código de respuesta
         respuesta.setStatus(303);
         //y setHeader nos permite MANDAR ese código al usuario
-        respuesta.setHeader("Location", "/music-wiki/"+mapeoXMLDespacho);
+        respuesta.setHeader("Location", "/music-wiki/"+mapeoWebXMLDespacho);
         return respuesta;
     }
     

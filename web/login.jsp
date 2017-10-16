@@ -24,11 +24,11 @@
                     <form action="login/confirmar" method="post">
                         <div class="form-group">
                             <label for="inputEmail">Usuario</label>
-                            <input id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su email..." />
+                            <input name="email" id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su email..." />
                         </div>
                         <div class="form-group">
                             <label for="inputPassword">Contraseña</label>
-                            <input id="inputPassword" type="password" class="form-control" placeholder="Ingrese una contraseña..." />
+                            <input name="password" id="inputPassword" type="password" class="form-control" placeholder="Ingrese una contraseña..." />
                         </div>
                         <input type="submit" class="btn btn-danger" value="Entrar" />
                     </form>

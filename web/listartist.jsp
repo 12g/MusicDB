@@ -13,9 +13,9 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="open-iconic/css/open-iconic-bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../bootstrap/css/bootstrap-theme-min.css" rel="stylesheet" type="text/css"/>
+        <link href="../open-iconic/css/open-iconic-bootstrap.min.css" rel="stylesheet" type="text/css"/>
     </head>
     <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
         <div class="container">
@@ -42,9 +42,8 @@
                                     <td class="text-center"><c:out default="X" value="${artista.fechaNac}" ></c:out></td>
                                     <td class="text-center"><c:out default="X" value="${artista.albumes.size()}" ></c:out></td>
                                     <td class="text-right">
-                                        <a href="verArtista?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
-                                        <a href="editartist.jsp" class="btn btn-warning btn-xs text-center" style="width:24px"><span class="oi oi-pencil"></span></a>
-                                        <a href="borrarArtista?id=${artistaID}" class="btn btn-danger btn-xs text-center" style="width:24px"><span class="oi oi-trash"></span></a>
+                                        <a href="../artista/ver?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
+                                        <a href="../artista/borrar?id=${artistaID}" class="btn btn-danger btn-xs text-center" style="width:24px"><span class="oi oi-trash"></span></a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -52,10 +51,10 @@
                     </table>
                 </div>
                 <div class="col-xs-4 col-xs-offset-2 text-muted text-left">
-                    <a href="crearArtista" class="btn btn-info">Nuevo</a>
+                    <a href="../artista/crear" class="btn btn-info">Nuevo</a>
                 </div>
                 <div class="col-xs-4 text-muted text-right">
-                    <a href="buscarArtista" class="btn btn-success">Buscar</a>
+                    <a href="../artista/buscar" class="btn btn-success">Buscar</a>
                 </div>
             </div>
         </div>
