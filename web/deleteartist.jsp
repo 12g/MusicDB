@@ -9,17 +9,9 @@
 <html>
     <head>  
         <title>Inicio - Wiki Instruments</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../open-iconic/css/open-iconic-bootstrap.css" rel="stylesheet" type="text/css"/>
+        <%@include file="/MusicWiki/WEB-INF/jspf/segment_include_styles.jspf" %>
     </head>
-    <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >  
-       
-            
-        
+    <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >  
         <div class="container">
             <div class="row">
                 <br>
@@ -36,19 +28,14 @@
                     <h2 style="color: #ffffff">Borrar Artista?</h2>
                 </div>
                 <div class=" col-xs-6 text-right">
-                    <a href="lista_artistas" type="button" class="btn btn-danger">Si</a>
+                    <a href="/MusicWiki/artista/borrar/si" type="button" class="btn btn-danger">Si</a>
                 </div>
                 
                 <div class=" col-xs-6">
-                    <a href="lista_artistas" type="button" class="btn btn-danger">No</a>
+                    <a href="/MusicWiki/artista/borrar/no" type="button" class="btn btn-danger">No</a>
                 </div>
             </div>
         </div>
-
-
-
-
-
-
+        <%@include file="/MusicWiki/WEB-INF/jspf/segment_include_javascript.jspf" %>
     </body>
 </html>

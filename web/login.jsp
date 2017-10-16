@@ -9,13 +9,9 @@
 <html lang="en">
     <head>  
         <title>Inicio - Wiki Instruments</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="open-iconic/css/open-iconic-bootstrap.css" rel="stylesheet" type="text/css"/>
+        <%@include file="/MusicWiki/WEB-INF/jspf/segment_include_styles.jspf" %>
     </head>
-    <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
+    <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -38,8 +34,7 @@
             </div>
         </div>
         <%@include file="WEB-INF/jspf/segment_footer.jspf" %>
-        <script src="bootstrap/js/jquery-3.2.1.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="bootstrap/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+        <%@include file="/MusicWiki/WEB-INF/jspf/segment_include_javascript.jspf" %>
     </body>
 </html>
 

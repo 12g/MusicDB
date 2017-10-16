@@ -9,13 +9,9 @@
 <html>
     <head>  
         <title>Nuevo - Wiki Instruments</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <link href="../open-iconic/css/open-iconic-bootstrap.css" rel="stylesheet" type="text/css"/>
+        <%@include file="/MusicWiki/WEB-INF/jspf/segment_include_styles.jspf" %>
     </head>
-    <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
+    <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
         <div class="container" style="color: #ffffff">
             <div class="row">
                 <div class="col-xs-4 col-xs-offset-4" >
@@ -45,5 +41,6 @@
                 </div>
             </div>
         </div>
+        <%@include file="/MusicWiki/WEB-INF/jspf/segment_include_javascript.jspf" %>
     </body>
 </html>
