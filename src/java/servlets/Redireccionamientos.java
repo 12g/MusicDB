@@ -17,13 +17,12 @@
 
 package servlets;
 
+import service.SessionManager;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -65,7 +64,7 @@ public class Redireccionamientos extends HttpServlet {
                 formulario_password = peticion.getParameter("password");
                 
                 //mandamos la información con el Login.Do
-                if ((sesion = Login.Do(sesion, formulario_email, formulario_password)) != null) {
+                if ((sesion = SessionManager.Login(sesion, formulario_email, formulario_password)) != null) {
                     List<Artista> artistas = llenarListaConEjemplos(new ArrayList<>());
                     sesion.setAttribute("artistas", artistas);
 
@@ -73,7 +72,6 @@ public class Redireccionamientos extends HttpServlet {
                     System.out.println(mapeoWebXMLDespacho);
                     break;
                 }
-                //sin break, esto se va al case default
             }
             case "/artista/borrar":
             {
@@ -118,6 +116,16 @@ public class Redireccionamientos extends HttpServlet {
             {
                 mapeoWebXMLDespacho = "/jsp/artista/todos";
                 break;
+            }
+            case "/artista/borrar/si":
+            {
+                int idArtista;
+                
+                idArtista = Integer.parseInt(peticion.getParameter("id"));
+                if ((sesion = SessionManager.EliminarArtista(sesion, idArtista)) != null) {
+                    mapeoWebXMLDespacho = "/jsp/artista/todos";
+                    break;
+                }
             }
             default:
             {

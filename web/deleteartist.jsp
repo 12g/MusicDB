@@ -27,11 +27,11 @@
                 <div class="col-xs-12 text-center">
                     <h2 style="color: #ffffff">Borrar Artista?</h2>
                 </div>
-                <div class=" col-xs-6 text-right">
+                <div class="col-xs-6 text-right">
                     <a href="/MusicWiki/artista/borrar/si" type="button" class="btn btn-danger">Si</a>
                 </div>
                 
-                <div class=" col-xs-6">
+                <div class="col-xs-6">
                     <a href="/MusicWiki/artista/borrar/no" type="button" class="btn btn-danger">No</a>
                 </div>
             </div>
