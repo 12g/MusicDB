@@ -30,8 +30,14 @@ public class SessionManager {
     public static HttpSession Login (HttpSession sesion, String email, String password){
         boolean problems = false;
         if (!problems) {
+            List<Artista> artistas;
+            
+            artistas = LlenarListaConEjemplos(new ArrayList<>());
+            
+            sesion.setAttribute("artistas", artistas);
             sesion.setAttribute("email", email);
             sesion.setAttribute("password", password);
+            
             return sesion;
         }
         return null;
@@ -46,5 +52,31 @@ public class SessionManager {
         }
         return null;
     }
+    
+    public static Artista ObtenerArtista (HttpSession sesion, int artistaID) {
+        boolean problems = false;
+        if (!problems) {
+            List<Artista> artistas;
+            Artista rt;
+            
+            artistas    = (ArrayList<Artista>)(sesion.getAttribute("artistas"));
+            rt          = artistas.get( artistaID );
+            return rt;
+        }
+        return null;
+    }
 
+    /**
+     * Añade los siguientes artistas a una lista:
+     * Black Sabbath, David Bowie, Neutral Milk Hotel, Juan Gabriel
+     * @param artistas La lista a la cual agregar estos objetos Artista.
+     * @return La lista que fue puesta como parámetro del método.
+     */
+    private static List<Artista> LlenarListaConEjemplos(List<Artista> artistas) {
+        artistas.add(new Artista("Black Sabbath", 1968));
+        artistas.add(new Artista("David Bowie", 1947));
+        artistas.add(new Artista("Neutral Milk Hotel", 1989));
+        artistas.add(new Artista("Juan Gabriel", 1950));
+        return artistas;
+    }
 }

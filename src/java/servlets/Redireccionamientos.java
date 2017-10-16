@@ -65,11 +65,7 @@ public class Redireccionamientos extends HttpServlet {
                 
                 //mandamos la información con el Login.Do
                 if ((sesion = SessionManager.Login(sesion, formulario_email, formulario_password)) != null) {
-                    List<Artista> artistas = llenarListaConEjemplos(new ArrayList<>());
-                    sesion.setAttribute("artistas", artistas);
-
                     mapeoWebXMLDespacho = "/jsp/artista/todos";
-                    System.out.println(mapeoWebXMLDespacho);
                     break;
                 }
             }
@@ -95,21 +91,15 @@ public class Redireccionamientos extends HttpServlet {
             }
             case "/artista/ver":
             {
-                List<Artista> todosMisArtistas;
                 int idArtista;
                 Artista artistaEncontrado;
-                String nombreArtista;
-                int añoArtista;
 
-                todosMisArtistas    = (ArrayList<Artista>)sesion.getAttribute("artistas");
-                idArtista           = Integer.valueOf(peticion.getParameter("id"));
-                artistaEncontrado   = todosMisArtistas.get(idArtista);
-                nombreArtista       = artistaEncontrado.getNombre();
-                añoArtista          = artistaEncontrado.getFechaNac();
+                idArtista           = Integer.parseInt(peticion.getParameter("id"));
+                artistaEncontrado   = SessionManager.ObtenerArtista(sesion, idArtista);
 
                 mapeoWebXMLDespacho = "/jsp/artista/ver";
-                peticion.setAttribute("nombre", nombreArtista);
-                peticion.setAttribute("año", añoArtista);
+                peticion.setAttribute("nombre", artistaEncontrado.getNombre());
+                peticion.setAttribute("año", artistaEncontrado.getFechaNac());
                 break;
             }
             case "/artista/borrar/no":
@@ -140,12 +130,13 @@ public class Redireccionamientos extends HttpServlet {
             respuesta = etiquetarRedireccion303 (respuesta, mapeoWebXMLDespacho);
         }
         else {
-            //Mandamos al cliente a la página
             RequestDispatcher redireccionador;
+            
+            //Mandamos al cliente a la página
             redireccionador = peticion.getRequestDispatcher(mapeoWebXMLDespacho);
             redireccionador.forward(peticion, respuesta);
         }
-        //Termina el proceso de redirección
+        //Aquí termina el proceso de redirección
     }
     
     /**
@@ -203,19 +194,5 @@ public class Redireccionamientos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
-    /**
-     * Añade los siguientes artistas a una lista:
-     * Black Sabbath, David Bowie, Neutral Milk Hotel, Juan Gabriel
-     * @param artistas La lista a la cual agregar estos objetos Artista.
-     * @return La lista que fue puesta como parámetro del método.
-     */
-    private List<Artista> llenarListaConEjemplos(List<Artista> artistas) {
-        artistas.add(new Artista("Black Sabbath", 1968));
-        artistas.add(new Artista("David Bowie", 1947));
-        artistas.add(new Artista("Neutral Milk Hotel", 1989));
-        artistas.add(new Artista("Juan Gabriel", 1950));
-        return artistas;
-    }
 
 }
