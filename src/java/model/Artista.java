@@ -16,97 +16,33 @@
  */
 package model;
 
-import java.util.List;
-import java.util.ArrayList;
-
 /**
  *
  * @author Benjamin "12g" La Madrid
  */
 public class Artista {
     
-    private List<Album> albumes;
     private String nombre;
     private int fechaNac;
-
-    /**
-     * Obtiene todos los álbumes del artista publicados.
-     * @return Un objeto ArrayList con dichos álbumes del artista.
-     */
-    public List<Album> getAlbumes() {
-        return albumes;
-    }
-
-    /**
-     * Ingresa una nueva entrada en la lista de álbumes del artista.
-     * @param album El objeto, de clase Album, a agregar a dicha lista.
-     */
-    public void addAlbum(Album album) {
-        this.albumes.add(album);
-    }
-
-    /**
-     * Elimina una entrada de la lista de álbumes del artista.
-     * @param index El número que identifica esta entrada.
-     */
-    public void removeAlbum(int index) {
-        this.albumes.remove(index);
-    }
-
-    /**
-     * Obtiene el nombre completo del artista.
-     * @return Un string con el nombre del artista.
-     */
+    
     public String getNombre() {
         return nombre;
     }
-
-    /**
-     * Establece el nombre del artista.
-     * @param nombre Un string conteniendo el nombre completo de dicho artista.
-     */
+    
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    /**
-     * Obtiene la fecha de nacimiento (o formación) del artista.
-     * @return Un string en formato 'DD/MM/AAAA'.
-     */
-    public int getFechaNac() {
+    
+    public int getFechaNacimiento() {
         return fechaNac;
     }
-
-    /**
-     * Cambia la fecha de nacimiento establecida del artista.
-     * @param fecha Un String conteniendo una fecha en el formato 'DD/MM/AAAA'
-     */
-    public void setFechaNac(int fecha) {
+    
+    public void setFechaNacimiento(int fecha) {
         this.fechaNac = fecha;
     }
-
-    /**
-     * Crea un nuevo objeto Artista y crea una lista de álbumes vacía para éste.
-     * @param nombre Nombre completo del artista
-     * @param fecha Fecha, en formato 'DD/MM/AAAA'
-     * @param grupo true si es un grupo, false si es una persona
-     */
+    
     public Artista(String nombre, int fecha) {
-        this.albumes = new ArrayList<Album>();
         setNombre(nombre);
-        setFechaNac(fecha);
-    }
-
-    /**
-     * Crea un nuevo objeto Artista y le asigna una lista de álbumes ya creada.
-     * @param nombre Nombre completo del artista
-     * @param fecha Fecha, en formato 'DD/MM/AAAA'
-     * @param grupo true si es un grupo, false si es una persona
-     * @param albumes 
-     */
-    public Artista(String nombre, int fecha, ArrayList<Album> albumes) {
-        this.albumes = albumes;
-        setNombre(nombre);
-        setFechaNac(fecha);
+        setFechaNacimiento(fecha);
     }
 }
