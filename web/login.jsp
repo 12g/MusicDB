@@ -21,7 +21,7 @@
                 <div class="col">
                     <br/>
                     <h1 class="text-light">Wiki Instruments</h1>
-                    <form action="login" method="post">
+                    <form action="login/confirmar" method="post">
                         <div class="form-group">
                             <label for="inputEmail">Usuario</label>
                             <input id="inputEmail" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Ingrese su email..." />

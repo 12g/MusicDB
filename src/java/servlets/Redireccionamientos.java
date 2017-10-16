@@ -56,7 +56,7 @@ public class Redireccionamientos extends HttpServlet {
         String mapeoXMLDespacho;
         HttpSession sesion = peticion.getSession(); //Obtiene o crea la sesion
         switch (servletSolicitado) {
-            case "login/confirmar":
+            case "/login/awwwwwwwwwwawwwwwwaconfirmar":
             {
                 String formulario_email, formulario_password;
                 
