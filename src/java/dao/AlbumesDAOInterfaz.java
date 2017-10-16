@@ -16,10 +16,13 @@
  */
 package dao;
 
+import java.util.List;
+
 /**
  *
  * @author benjamin
  */
-public class AlbumesDAOInterfaz {
-    
+public interface AlbumesDAOInterfaz {
+    public model.Album getAlbumByName();
+    public List<model.Album> getAllAlbums();
 }

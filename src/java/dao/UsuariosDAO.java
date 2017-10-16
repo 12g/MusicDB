@@ -45,7 +45,7 @@ public class UsuariosDAO implements UsuariosDAOInterfaz {
     }
 
     @Override
-    public List<Usuario> getUsuariosList() {
+    public List<Usuario> getAllUsuarios() {
         return listaUsuarios;
     }
     

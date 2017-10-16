@@ -16,10 +16,13 @@
  */
 package dao;
 
+import java.util.List;
+
 /**
  *
  * @author benjamin
  */
-public class ArtistasDAOInterfaz {
-    
+public interface ArtistasDAOInterfaz {
+    public model.Artista getArtistaByName();
+    public List<model.Artista> getAllArtistas();
 }

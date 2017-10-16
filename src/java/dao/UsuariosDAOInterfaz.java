@@ -24,5 +24,5 @@ import java.util.List;
  */
 public interface UsuariosDAOInterfaz {
     public model.Usuario getUsuarioByNameAndPass(String username, String userpass) throws DAOException;
-    public List<model.Usuario> getUsuariosList();
+    public List<model.Usuario> getAllUsuarios();
 }
