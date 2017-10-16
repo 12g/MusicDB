@@ -1,5 +1,8 @@
 package dao;
 
+import java.util.List;
+import model.Album;
+
 /*
  * Copyright (C) 2017 benjamin
  *
@@ -21,6 +24,16 @@ package dao;
  *
  * @author benjamin
  */
-public class AlbumesDAO {
+public class AlbumesDAO implements AlbumesDAOInterfaz {
+
+    @Override
+    public Album getAlbumByName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Album> getAllAlbums() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

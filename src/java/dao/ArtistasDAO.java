@@ -16,10 +16,23 @@
  */
 package dao;
 
+import java.util.List;
+import model.Artista;
+
 /**
  *
  * @author benjamin
  */
-public class ArtistasDAO {
+public class ArtistasDAO implements ArtistasDAOInterfaz {
+    
+    @Override
+    public Artista getArtistaByName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Artista> getAllArtistas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
