@@ -16,8 +16,12 @@
  */
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 import model.Artista;
+import model.Usuario;
 
 /**
  *
@@ -26,13 +30,43 @@ import model.Artista;
 public class ArtistasDAO implements ArtistasDAOInterfaz {
     
     @Override
-    public Artista getArtistaByName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Artista getArtistaByName(String nombre) {
+        try {
+            Connection conexion = jdbc.DBConnection.getInstance();
+            String queryString = "SELECT * FROM artistas WHERE artNombres = ?";
+            PreparedStatement query = conexion.prepareStatement(queryString);
+            query.setString(0, nombre);
+            ResultSet rsQuery = query.executeQuery();
+            if (rsQuery.first()) {
+                Artista returnValue = new Artista(rsQuery.getString("artNombres"), rsQuery.getInt("artFNacimiento"));
+                return returnValue;
+            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 
     @Override
     public List<Artista> getAllArtistas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connection conexion = jdbc.DBConnection.getInstance();
+            String queryString = "SELECT * FROM artistas";
+            PreparedStatement query = conexion.prepareStatement(queryString);
+            ResultSet rsQuery = query.executeQuery();
+            if (rsQuery.first()) {
+                List<Artista> returnValue = new java.util.ArrayList<>();
+                do {
+                    returnValue.add(new Artista(rsQuery.getString("usrNombre"), rsQuery.getInt("artFNacimiento")));
+                } while (rsQuery.next());
+                return returnValue;
+            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
     
 }

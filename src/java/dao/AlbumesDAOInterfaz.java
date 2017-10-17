@@ -23,6 +23,6 @@ import java.util.List;
  * @author benjamin
  */
 public interface AlbumesDAOInterfaz {
-    public model.Album getAlbumByName();
+    public model.Album getAlbumByName(String nombre);
     public List<model.Album> getAllAlbums();
 }

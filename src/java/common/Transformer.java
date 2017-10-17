@@ -41,7 +41,7 @@ public class Transformer {
     public static Artista ArtistaDTOToModel(ArtistaDTO origen) {
         return new Artista(origen.getNombre(), origen.getFechaNacimiento());
     }
-    public static ArtistaDTO AlbumModelToDTO(Artista origen) {
+    public static ArtistaDTO ArtistaModelToDTO(Artista origen) {
         return new ArtistaDTO(origen.getNombre(), origen.getFechaNacimiento());
     }
 }

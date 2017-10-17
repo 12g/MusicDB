@@ -16,8 +16,10 @@
  */
 package dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
-import java.util.ListIterator;
 import model.Usuario;
 
 /**
@@ -27,13 +29,43 @@ import model.Usuario;
 public class UsuariosDAO implements UsuariosDAOInterfaz {
     
     @Override
-    public Usuario getUsuarioByNameAndPass(String username, String userpass) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario getUsuarioByNameAndPass(String username, String password) {
+        String[] argumentos = {username, password};
+        try {
+            Connection conexion = jdbc.DBConnection.getInstance();
+            String queryString = "SELECT * FROM usuarios WHERE usrNombre = ? AND usrPass = ?";
+            PreparedStatement query = conexion.prepareStatement(queryString, argumentos);
+            ResultSet rsQuery = query.executeQuery();
+            if (rsQuery.first()) {
+                Usuario returnValue = new Usuario(rsQuery.getString("usrNombre"), rsQuery.getString("usrPass"));
+                return returnValue;
+            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
 
     @Override
     public List<Usuario> getAllUsuarios() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            Connection conexion = jdbc.DBConnection.getInstance();
+            String queryString = "SELECT * FROM usuarios";
+            PreparedStatement query = conexion.prepareStatement(queryString);
+            ResultSet rsQuery = query.executeQuery();
+            if (rsQuery.first()) {
+                List<Usuario> returnValue = new java.util.ArrayList<>();
+                do {
+                    returnValue.add(new Usuario(rsQuery.getString("usrNombre"), rsQuery.getString("usrPass")) );
+                } while (rsQuery.next());
+                return returnValue;
+            }
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return null;
     }
     
 }
