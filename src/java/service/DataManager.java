@@ -53,4 +53,62 @@ public class DataManager {
         
         return null;
     }
+    
+    
+    public ArtistaDTO getArtistaByName(String nombre){
+        ArtistasDAO objDAO = new ArtistasDAO(); 
+        model.Artista artistaModel = objDAO.getArtistaByName(nombre);
+        
+        if (artistaModel != null) {
+            ArtistaDTO objDTO = Transformer.ArtistaModelToDTO(artistaModel);
+            return objDTO;
+        }
+        
+        return null;    
+    }
+
+    public List<ArtistaDTO> getAllArtistas() {
+        ArtistasDAO objDAO = new ArtistasDAO(); 
+        List<model.Artista> modelList = objDAO.getAllArtistas();
+        
+        if (modelList.size() > 0) {
+            List<ArtistaDTO> dtoList = new java.util.ArrayList<ArtistaDTO>();
+            for (model.Artista um : modelList) {
+                ArtistaDTO objDTO = Transformer.ArtistaModelToDTO(um);
+                dtoList.add(objDTO);
+            }
+            return dtoList;
+        }
+        
+        return null;
+    }
+    
+    
+    public AlbumDTO getAlbumByName(String nombre){
+        AlbumesDAO objDAO = new AlbumesDAO(); 
+        model.Album albumModel = objDAO.getAlbumByName(nombre);
+        
+        if (albumModel != null) {
+            AlbumDTO objDTO = Transformer.AlbumModelToDTO(albumModel);
+            return objDTO;
+        }
+        
+        return null;    
+    }
+
+    public List<AlbumDTO> getAllAlbumes() {
+        AlbumesDAO objDAO = new AlbumesDAO(); 
+        List<model.Album> modelList = objDAO.getAllAlbums();
+        
+        if (modelList.size() > 0) {
+            List<AlbumDTO> dtoList = new java.util.ArrayList<AlbumDTO>();
+            for (model.Album um : modelList) {
+                AlbumDTO objDTO = Transformer.AlbumModelToDTO(um);
+                dtoList.add(objDTO);
+            }
+            return dtoList;
+        }
+        
+        return null;
+    }
 }
