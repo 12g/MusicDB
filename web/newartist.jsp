@@ -12,6 +12,7 @@
         <%@include file="WEB-INF/jspf/segment_include_styles.jspf" %>
     </head>
     <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
+        <%@include file="WEB-INF/jspf/segment_header.jspf" %>
         <div class="container" style="color: #ffffff">
             <div class="row">
                 <div class="col-xs-4 col-xs-offset-4" >
@@ -20,15 +21,14 @@
                     <br>
                     <br>
                     <br>
-                    <form action="" method="get">
+                    <form action="artista/crear/confirmar" method="post">
                         <div class="form-group">
                             <label for="inputNombre">Nombre</label>
-                            <input id="inputNombre" type="text" class="form-control" placeholder="Ingrese un nombre..." />
-                            <small class="form-text text-muted">Queremos ser tu página favorita</small>
+                            <input name="nombre" id="inputNombre" type="text" class="form-control" placeholder="Ingrese un nombre..." />
                         </div>
                         <div class="form-group">
                             <label for="inputAño">Año de Nacimiento/Formación</label>
-                            <input id="inputAño" type="number" minlength="4" maxlength="4" class="form-control" value="1940" placeholder="Ingrese un año..." />
+                            <input name="año" id="inputAño" type="number" minlength="4" maxlength="4" class="form-control" value="1940" placeholder="Ingrese un año..." />
                         </div>
                         <div class="form-check">
                             <label>
@@ -41,6 +41,7 @@
                 </div>
             </div>
         </div>
+        <%@include file="WEB-INF/jspf/segment_footer.jspf" %>
         <%@include file="WEB-INF/jspf/segment_include_javascript.jspf" %>
     </body>
 </html>

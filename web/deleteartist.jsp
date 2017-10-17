@@ -12,6 +12,7 @@
         <%@include file="WEB-INF/jspf/segment_include_styles.jspf" %>
     </head>
     <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >  
+        <%@include file="WEB-INF/jspf/segment_header.jspf" %>
         <div class="container">
             <div class="row">
                 <br>
@@ -36,6 +37,7 @@
                 </div>
             </div>
         </div>
+        <%@include file="WEB-INF/jspf/segment_footer.jspf" %>
         <%@include file="WEB-INF/jspf/segment_include_javascript.jspf" %>
     </body>
 </html>
