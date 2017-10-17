@@ -111,4 +111,9 @@ public class DataManager {
         
         return null;
     }
+    
+    public boolean addArtista(model.Artista nuevo){
+        
+        return true;
+    }
 }

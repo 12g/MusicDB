@@ -58,6 +58,7 @@
         <url-pattern>/login/confirmar</url-pattern>
         <url-pattern>/artista/buscar</url-pattern>
         <url-pattern>/artista/borrar</url-pattern>
+        <url-pattern>/artista/crear/confirmar</url-pattern>
         <url-pattern>/artista/crear</url-pattern>
         <url-pattern>/artista/ver</url-pattern>
     </servlet-mapping>

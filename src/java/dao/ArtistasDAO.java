@@ -21,7 +21,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import model.Artista;
-import model.Usuario;
 
 /**
  *

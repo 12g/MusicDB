@@ -87,6 +87,18 @@ public class Redireccionamientos extends HttpServlet {
                 mapeoWebXMLDespacho = "/jsp/artista/crear";
                 break;
             }
+            case "/artista/crear/confirmar": {
+                String formulario_nombre;
+                int formulario_año;
+                
+                formulario_nombre = peticion.getParameter("nombre");
+                formulario_año = Integer.parseInt(peticion.getParameter("año"));
+                
+                sesion = SessionManager.CrearArtista(sesion, formulario_nombre, formulario_año);
+                
+                mapeoWebXMLDespacho = "/jsp/artista/todos";
+                break;
+            }
             case "/artista/ver":
             {
                 int idArtista;

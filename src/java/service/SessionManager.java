@@ -46,8 +46,12 @@ public class SessionManager {
     public static HttpSession EliminarArtista (HttpSession sesion, int artistaID) {
         boolean problems = false;
         if (!problems) {
-            List<Artista> artistas = (ArrayList<Artista>)sesion.getAttribute("artistas");
+            List<Artista> artistas;
+            
+            artistas = (ArrayList<Artista>)sesion.getAttribute("artistas");
+            
             artistas.remove( artistaID );
+            sesion.setAttribute("artistas", artistas);
             return sesion;
         }
         return null;
@@ -62,6 +66,23 @@ public class SessionManager {
             artistas    = (ArrayList<Artista>)(sesion.getAttribute("artistas"));
             rt          = artistas.get( artistaID );
             return rt;
+        }
+        return null;
+    }
+    
+    public static HttpSession CrearArtista (HttpSession sesion, String nombre, int año) {
+        boolean problems = false;
+        if (!problems) {
+            List<Artista> artistas;
+            Artista nuevo;
+            
+            artistas    = (ArrayList<Artista>)(sesion.getAttribute("artistas"));
+            nuevo       = new Artista(nombre, año);
+            
+            artistas.add(nuevo);
+            sesion.setAttribute("artistas", artistas);
+           
+            return sesion;
         }
         return null;
     }
