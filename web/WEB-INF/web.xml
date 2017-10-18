@@ -5,10 +5,6 @@
         <servlet-class>servlets.Redireccionamientos</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Servlet_confirmarEliminacion</servlet-name>
-        <servlet-class>servlets.ConfirmarEliminacionArtista</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>JSP_listarArtistas</servlet-name>
         <jsp-file>listartist.jsp</jsp-file>
     </servlet>
@@ -49,14 +45,11 @@
         <url-pattern>/jsp/artista/ver</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Servlet_confirmarEliminacion</servlet-name>
-        <url-pattern>/artista/borrar/si</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>Servlet_Redireccion</servlet-name>
         <url-pattern>/artista/borrar/no</url-pattern>
         <url-pattern>/login/confirmar</url-pattern>
         <url-pattern>/artista/buscar</url-pattern>
+        <url-pattern>/artista/borrar/si</url-pattern>
         <url-pattern>/artista/borrar</url-pattern>
         <url-pattern>/artista/crear/confirmar</url-pattern>
         <url-pattern>/artista/crear</url-pattern>

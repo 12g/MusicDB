@@ -29,7 +29,7 @@
                     <h2 style="color: #ffffff">Borrar Artista?</h2>
                 </div>
                 <div class="col-xs-6 text-right">
-                    <a href="/MusicWiki/artista/borrar/si" type="button" class="btn btn-danger">Si</a>
+                    <a href="/MusicWiki/artista/borrar/si?id=${id}" type="button" class="btn btn-danger">Si</a>
                 </div>
                 
                 <div class="col-xs-6">

@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Artista;
+import dto.*;
 
 /**
  *
@@ -92,7 +92,7 @@ public class Redireccionamientos extends HttpServlet {
                 int formulario_año;
                 
                 formulario_nombre = peticion.getParameter("nombre");
-                formulario_año = Integer.parseInt(peticion.getParameter("año"));
+                formulario_año = Integer.parseInt(peticion.getParameter("ano"));
                 
                 sesion = SessionManager.CrearArtista(sesion, formulario_nombre, formulario_año);
                 
@@ -102,7 +102,7 @@ public class Redireccionamientos extends HttpServlet {
             case "/artista/ver":
             {
                 int idArtista;
-                Artista artistaEncontrado;
+                ArtistaDTO artistaEncontrado;
 
                 idArtista           = Integer.parseInt(peticion.getParameter("id"));
                 artistaEncontrado   = SessionManager.ObtenerArtista(sesion, idArtista);

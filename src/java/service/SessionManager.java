@@ -19,7 +19,7 @@ package service;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
-import model.Artista;
+import dto.*;
 
 /**
  *
@@ -30,7 +30,7 @@ public class SessionManager {
     public static HttpSession Login (HttpSession sesion, String email, String password){
         boolean problems = false;
         if (!problems) {
-            List<Artista> artistas;
+            List<ArtistaDTO> artistas;
             
             artistas = LlenarListaConEjemplos(new ArrayList<>());
             
@@ -46,9 +46,9 @@ public class SessionManager {
     public static HttpSession EliminarArtista (HttpSession sesion, int artistaID) {
         boolean problems = false;
         if (!problems) {
-            List<Artista> artistas;
+            List<ArtistaDTO> artistas;
             
-            artistas = (ArrayList<Artista>)sesion.getAttribute("artistas");
+            artistas = (ArrayList<ArtistaDTO>)sesion.getAttribute("artistas");
             
             artistas.remove( artistaID );
             sesion.setAttribute("artistas", artistas);
@@ -57,13 +57,13 @@ public class SessionManager {
         return null;
     }
     
-    public static Artista ObtenerArtista (HttpSession sesion, int artistaID) {
+    public static ArtistaDTO ObtenerArtista (HttpSession sesion, int artistaID) {
         boolean problems = false;
         if (!problems) {
-            List<Artista> artistas;
-            Artista rt;
+            List<ArtistaDTO> artistas;
+            ArtistaDTO rt;
             
-            artistas    = (ArrayList<Artista>)(sesion.getAttribute("artistas"));
+            artistas    = (ArrayList<ArtistaDTO>)(sesion.getAttribute("artistas"));
             rt          = artistas.get( artistaID );
             return rt;
         }
@@ -73,11 +73,11 @@ public class SessionManager {
     public static HttpSession CrearArtista (HttpSession sesion, String nombre, int año) {
         boolean problems = false;
         if (!problems) {
-            List<Artista> artistas;
-            Artista nuevo;
+            List<ArtistaDTO> artistas;
+            ArtistaDTO nuevo;
             
-            artistas    = (ArrayList<Artista>)(sesion.getAttribute("artistas"));
-            nuevo       = new Artista(nombre, año);
+            artistas    = (ArrayList<ArtistaDTO>)(sesion.getAttribute("artistas"));
+            nuevo       = new ArtistaDTO(nombre, año);
             
             artistas.add(nuevo);
             sesion.setAttribute("artistas", artistas);
@@ -93,11 +93,11 @@ public class SessionManager {
      * @param artistas La lista a la cual agregar estos objetos Artista.
      * @return La lista que fue puesta como parámetro del método.
      */
-    private static List<Artista> LlenarListaConEjemplos(List<Artista> artistas) {
-        artistas.add(new Artista("Black Sabbath", 1968));
-        artistas.add(new Artista("David Bowie", 1947));
-        artistas.add(new Artista("Neutral Milk Hotel", 1989));
-        artistas.add(new Artista("Juan Gabriel", 1950));
+    private static List<ArtistaDTO> LlenarListaConEjemplos(List<ArtistaDTO> artistas) {
+        artistas.add(new ArtistaDTO("Black Sabbath", 1968));
+        artistas.add(new ArtistaDTO("David Bowie", 1947));
+        artistas.add(new ArtistaDTO("Neutral Milk Hotel", 1989));
+        artistas.add(new ArtistaDTO("Juan Gabriel", 1950));
         return artistas;
     }
 }

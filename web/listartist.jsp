@@ -25,7 +25,6 @@
                                 <th>#</th>
                                 <th>Nombre</th>
                                 <th class="text-center">Nacimiento/Formación</th>
-                                <th class="text-center">Álbumes</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -34,9 +33,8 @@
                                 <c:set var="artistaID" value="${artistas.indexOf(artista)}" scope="session" />
                                 <tr class="${(artistaID%2 != 0)? "warning text-warning":"success text-success"}">
                                     <th scope="row">${artistaID+1}</th>
-                                    <td><c:out default="X" value="${artista.nombre}" ></c:out></td>
-                                    <td class="text-center"><c:out default="X" value="${artista.fechaNac}" ></c:out></td>
-                                    <td class="text-center"><c:out default="X" value="${artista.albumes.size()}" ></c:out></td>
+                                    <td><c:out default="X" value="${artista.getNombre()}" ></c:out></td>
+                                    <td class="text-center"><c:out default="X" value="${artista.getFechaNacimiento()}" ></c:out></td>
                                     <td class="text-right">
                                         <a href="/MusicWiki/artista/ver?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
                                         <a href="/MusicWiki/artista/borrar?id=${artistaID}" class="btn btn-danger btn-xs text-center" style="width:24px"><span class="oi oi-trash"></span></a>
