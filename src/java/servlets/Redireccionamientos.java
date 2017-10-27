@@ -14,7 +14,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package servlets;
 
 import service.SessionManager;
@@ -43,128 +42,144 @@ public class Redireccionamientos extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest peticion, HttpServletResponse respuesta)
             throws ServletException, IOException {
-        
+
         boolean usarPracticaHTTP303 = false;
-        
+
         respuesta.setContentType("text/html;charset=UTF-8");
-        
+
         //La URL que el usuario hubiese ingresado o a la que haya sido enviado
-        String contexto = peticion.getContextPath(); 
-        String servletSolicitado = peticion.getRequestURI().replace(contexto, ""); 
+        String contexto = peticion.getContextPath(); // debiera ser siempre /MusicWiki en esta app web
+        String servletSolicitado = peticion.getRequestURI().replace(contexto, "");
         String mapeoWebXMLDespacho;
-        HttpSession sesion = peticion.getSession(); //Obtiene o crea la sesion
-        switch (servletSolicitado) {
-            case "/login/confirmar":
-            {
-                String formulario_email, formulario_password;
-                
-                formulario_email = peticion.getParameter("email");
-                formulario_password = peticion.getParameter("password");
-                
-                //mandamos la información con el Login.Do
-                if ((sesion = SessionManager.Login(sesion, formulario_email, formulario_password)) != null) {
-                    mapeoWebXMLDespacho = "/jsp/artista/todos";
+        HttpSession sesion = peticion.getSession(false); //Obtiene la sesion
+        if (sesion == null && !servletSolicitado.equals("/login")) {
+            mapeoWebXMLDespacho = "/jsp/login";
+        } else {
+            switch (servletSolicitado) {
+                case "/login": {
+                    mapeoWebXMLDespacho = redireccionarInicio(sesion, peticion);
                     break;
                 }
-            }
-            case "/artista/borrar":
-            {
-                int idArtista;
-                
-                idArtista = Integer.valueOf( peticion.getParameter("id") );
-                
-                mapeoWebXMLDespacho = "/jsp/artista/borrar";
-                peticion.setAttribute("id", idArtista);
-                break;
-            }
-            case "/artista/buscar":
-            {
-                mapeoWebXMLDespacho = "/jsp/artista/buscar";
-                break;
-            }
-            case "/artista/crear":
-            {
-                mapeoWebXMLDespacho = "/jsp/artista/crear";
-                break;
-            }
-            case "/artista/crear/confirmar": {
-                String formulario_nombre;
-                int formulario_año;
-                
-                formulario_nombre = peticion.getParameter("nombre");
-                formulario_año = Integer.parseInt(peticion.getParameter("ano"));
-                
-                sesion = SessionManager.CrearArtista(sesion, formulario_nombre, formulario_año);
-                
-                mapeoWebXMLDespacho = "/jsp/artista/todos";
-                break;
-            }
-            case "/artista/ver":
-            {
-                int idArtista;
-                ArtistaDTO artistaEncontrado;
-
-                idArtista           = Integer.parseInt(peticion.getParameter("id"));
-                artistaEncontrado   = SessionManager.ObtenerArtista(sesion, idArtista);
-
-                mapeoWebXMLDespacho = "/jsp/artista/ver";
-                peticion.setAttribute("nombre", artistaEncontrado.getNombre());
-                peticion.setAttribute("año", artistaEncontrado.getFechaNacimiento());
-                break;
-            }
-            case "/artista/borrar/no":
-            {
-                mapeoWebXMLDespacho = "/jsp/artista/todos";
-                break;
-            }
-            case "/artista/borrar/si":
-            {
-                int idArtista;
-                
-                idArtista = Integer.parseInt(peticion.getParameter("id"));
-                if ((sesion = SessionManager.EliminarArtista(sesion, idArtista)) != null) {
-                    mapeoWebXMLDespacho = "/jsp/artista/todos";
+                case "/crear_artista": {
+                    mapeoWebXMLDespacho = redireccionarCreacionArtista(peticion, sesion);
                     break;
                 }
-            }
-            default:
-            {
-                mapeoWebXMLDespacho = "/jsp/error";
-                break;
+                case "/ver_artista": {
+                    mapeoWebXMLDespacho = redireccionarDetallesArtista(peticion, sesion);
+                    break;
+                }
+                case "/borrar_artista": {
+                    mapeoWebXMLDespacho = redireccionarEliminacionArtista(peticion, sesion);
+                    break;
+                }
+                case "/buscar_artista": {
+                    mapeoWebXMLDespacho = redireccionarBusquedaArtista();
+                    break;
+                }
+                default: {
+                    mapeoWebXMLDespacho = "/jsp/error";
+                    break;
+                }
             }
         }
 
-        
         //Código extra - Una microinvestigación en buenas prácticas
         if (usarPracticaHTTP303) {
-            respuesta = etiquetarRedireccion303 (respuesta, mapeoWebXMLDespacho);
-        }
-        else {
+            respuesta = etiquetarRedireccion303(respuesta, contexto, mapeoWebXMLDespacho);
+        } else {
             RequestDispatcher redireccionador;
-            
+
             //Mandamos al cliente a la página
             redireccionador = peticion.getRequestDispatcher(mapeoWebXMLDespacho);
-            redireccionador.forward(peticion, respuesta);
+            redireccionador.forward(
+                    peticion, 
+                    respuesta
+            );
         }
         //Aquí termina el proceso de redirección
     }
+
+    private String redireccionarInicio(HttpSession sesion, HttpServletRequest peticion) {
+        String mapeoWebXMLDespacho = "/jsp/login";
+        if (sesion == null) {
+            String f_email = peticion.getParameter("email");
+            String f_password = peticion.getParameter("password");
+            
+            if (f_email != null && f_password != null && !f_email.isEmpty() && !f_password.isEmpty()) {
+                sesion = SessionManager.Login(sesion, f_email, f_password);
+                System.out.println("Login exitoso con mail '" + f_email + "' y contraseña '" + f_password + "'");
+                if (sesion != null) {
+                    mapeoWebXMLDespacho = "/jsp/artista/todos";
+                }
+            }
+        } else {
+            mapeoWebXMLDespacho = "/jsp/artista/todos";
+        }
+        return mapeoWebXMLDespacho;
+    }
+
+    private String redireccionarDetallesArtista(HttpServletRequest peticion, HttpSession sesion) throws NumberFormatException {
+        String mapeoWebXMLDespacho = "/jsp/artista/todos";
+        String idArtista = peticion.getParameter("id");
+        if (idArtista != null) {
+            ArtistaDTO artistaEncontrado = SessionManager.ObtenerArtista(sesion, Integer.parseInt(idArtista));
+            
+            mapeoWebXMLDespacho = "/jsp/artista/ver";
+            peticion.setAttribute("nombre", artistaEncontrado.getNombre());
+            peticion.setAttribute("año", artistaEncontrado.getFechaNacimiento());
+        }
+        return mapeoWebXMLDespacho;
+    }
+
+    private String redireccionarCreacionArtista(HttpServletRequest peticion, HttpSession sesion) throws NumberFormatException {
+        String mapeoWebXMLDespacho = "/jsp/artista/crear";
+        String f_nombre = peticion.getParameter("nombre");
+        String f_año = peticion.getParameter("ano");
+        if (f_nombre != null && f_año != null) {
+            sesion = SessionManager.CrearArtista(sesion, f_nombre, Integer.parseInt(f_año));
+            mapeoWebXMLDespacho = "/jsp/artista/todos";
+        }
+        return mapeoWebXMLDespacho;
+    }
+
+    private String redireccionarEliminacionArtista(HttpServletRequest peticion, HttpSession sesion) throws NumberFormatException {
+        String mapeoWebXMLDespacho = "/jsp/artista/todos";
+        String idArtista = peticion.getParameter("id");
+        if (idArtista != null) {
+            String confirmar = peticion.getParameter("confirm");
+            if (confirmar.equals("true")) {
+                sesion = SessionManager.EliminarArtista(sesion, Integer.parseInt(idArtista));
+            }
+            else {
+                mapeoWebXMLDespacho = "/jsp/artista/borrar";
+                peticion.setAttribute("id", idArtista);
+            }
+        }
+        return mapeoWebXMLDespacho;
+    }
     
+    private String redireccionarBusquedaArtista() {
+        String mapeoWebXMLDespacho = "/jsp/artista/buscar";
+        return mapeoWebXMLDespacho;
+    }
+
     /**
-     * Redirecciona la petición, devolviendo un código de respuesta 303. 
-     * Esto es, recibe la información de un formulario
-     * y manda al usuario a realizar otra petición para recibir su información.
+     * Redirecciona la petición, devolviendo un código de respuesta 303. Esto
+     * es, recibe la información de un formulario y manda al usuario a realizar
+     * otra petición para recibir su información.
+     *
      * @param respuesta La repsuesta.
-     * @param mapeoWebXMLDespacho la URL que el usuario va a tener que solicitar.
-     * @return 
+     * @param mapeoWebXMLDespacho la URL que el usuario va a tener que
+     * solicitar.
+     * @return
      */
-    private HttpServletResponse etiquetarRedireccion303 (HttpServletResponse respuesta, String mapeoWebXMLDespacho) {
+    private HttpServletResponse etiquetarRedireccion303(HttpServletResponse respuesta, String contexto, String mapeoWebXMLDespacho) {
         //Ponemos el código de respuesta
         respuesta.setStatus(303);
         //y setHeader nos permite MANDAR ese código al usuario
-        respuesta.setHeader("Location", "/music-wiki/"+mapeoWebXMLDespacho);
+        respuesta.setHeader("Location", contexto + mapeoWebXMLDespacho);
         return respuesta;
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

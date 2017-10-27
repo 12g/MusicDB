@@ -9,35 +9,36 @@
 <html>
     <head>  
         <title>Inicio - Wiki Instruments</title>
-        <%@include file="WEB-INF/jspf/segment_include_styles.jspf" %>
+        <%@include file="segment/head.jsp" %>
     </head>
-    <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >  
-        <%@include file="WEB-INF/jspf/segment_header.jspf" %>
+    <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >  
         <div class="container">
-            <div class="row">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div class="col-xs-12 text-center">
-                    <h2 style="color: #ffffff">Borrar Artista?</h2>
+            <form action="borrar_artista" method="post">
+                <div class="row">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <div class="col-xs-12 text-center">
+                        <h2 style="color: #ffffff">¿Está seguro de borrar este artista de los registros?</h2>
+                        <input type="hidden" value="${id}" name="id" />
+                    </div>
+                    <div class="col-xs-6 text-right">
+                        <input type="submit" name="confirm" class="btn btn-danger" value="Sí" />
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="/MusicWiki/artista/borrar/no" type="button" class="btn btn-danger">No</a>
+                    </div>
                 </div>
-                <div class="col-xs-6 text-right">
-                    <a href="/MusicWiki/artista/borrar/si?id=${id}" type="button" class="btn btn-danger">Si</a>
-                </div>
-                
-                <div class="col-xs-6">
-                    <a href="/MusicWiki/artista/borrar/no" type="button" class="btn btn-danger">No</a>
-                </div>
-            </div>
+            </form>
         </div>
-        <%@include file="WEB-INF/jspf/segment_footer.jspf" %>
-        <%@include file="WEB-INF/jspf/segment_include_javascript.jspf" %>
+        <%@include file="segment/footer.jsp" %>
+        <%@include file="segment/scripts.jsp" %>
     </body>
 </html>

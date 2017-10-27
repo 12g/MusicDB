@@ -24,6 +24,10 @@
         <servlet-name>JSP_borrarArtista</servlet-name>
         <jsp-file>deleteartist.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>JSP_login</servlet-name>
+        <jsp-file>/login.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>JSP_listarArtistas</servlet-name>
         <url-pattern>/jsp/artista/todos</url-pattern>
@@ -45,15 +49,16 @@
         <url-pattern>/jsp/artista/ver</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>JSP_login</servlet-name>
+        <url-pattern>/jsp/login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Servlet_Redireccion</servlet-name>
-        <url-pattern>/artista/borrar/no</url-pattern>
-        <url-pattern>/login/confirmar</url-pattern>
-        <url-pattern>/artista/buscar</url-pattern>
-        <url-pattern>/artista/borrar/si</url-pattern>
-        <url-pattern>/artista/borrar</url-pattern>
-        <url-pattern>/artista/crear/confirmar</url-pattern>
-        <url-pattern>/artista/crear</url-pattern>
-        <url-pattern>/artista/ver</url-pattern>
+        <url-pattern>/borrar_artista</url-pattern>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/buscar_artista</url-pattern>
+        <url-pattern>/crear_artista</url-pattern>
+        <url-pattern>/ver_artista</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

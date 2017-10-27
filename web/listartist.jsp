@@ -10,10 +10,9 @@
 <html lang="en">
     <head>  
         <title>Artistas - Wiki Instruments</title>
-        <%@include file="WEB-INF/jspf/segment_include_styles.jspf" %>
+        <%@include file="segment/head.jsp" %>
     </head>
-    <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
-        <%@include file="WEB-INF/jspf/segment_header.jspf" %>
+    <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
         <div class="container">
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-muted">
@@ -36,8 +35,8 @@
                                     <td><c:out default="X" value="${artista.getNombre()}" ></c:out></td>
                                     <td class="text-center"><c:out default="X" value="${artista.getFechaNacimiento()}" ></c:out></td>
                                     <td class="text-right">
-                                        <a href="/MusicWiki/artista/ver?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
-                                        <a href="/MusicWiki/artista/borrar?id=${artistaID}" class="btn btn-danger btn-xs text-center" style="width:24px"><span class="oi oi-trash"></span></a>
+                                        <a href="ver_artista?id=${artistaID}" class="btn btn-primary btn-xs text-center" style="width:24px"><span class="oi oi-info"></span></a>
+                                        <a href="borrar_artista?id=${artistaID}" class="btn btn-danger btn-xs text-center" style="width:24px"><span class="oi oi-trash"></span></a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -45,14 +44,14 @@
                     </table>
                 </div>
                 <div class="col-xs-4 col-xs-offset-2 text-muted text-left">
-                    <a href="/MusicWiki/artista/crear" class="btn btn-info">Nuevo</a>
+                    <a href="crear_artista" class="btn btn-info">Nuevo</a>
                 </div>
                 <div class="col-xs-4 text-muted text-right">
-                    <a href="/MusicWiki/artista/buscar" class="btn btn-success">Buscar</a>
+                    <a href="buscar_artista" class="btn btn-success">Buscar</a>
                 </div>
             </div>
         </div>
-        <%@include file="WEB-INF/jspf/segment_footer.jspf" %>
-        <%@include file="WEB-INF/jspf/segment_include_javascript.jspf" %>
+        <%@include file="segment/footer.jsp" %>
+        <%@include file="segment/scripts.jsp" %>
     </body>
 </html>
