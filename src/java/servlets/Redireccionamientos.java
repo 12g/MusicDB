@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import dto.*;
+import service.DataManager;
 
 /**
  *
@@ -73,7 +74,7 @@ public class Redireccionamientos extends HttpServlet {
                     break;
                 }
                 case "/buscar_artista": {
-                    mapeoWebXMLDespacho = redireccionarBusquedaArtista();
+                    mapeoWebXMLDespacho = redireccionarBusquedaArtista(peticion, sesion);
                     break;
                 }
                 default: {
@@ -130,39 +131,49 @@ public class Redireccionamientos extends HttpServlet {
         }
         return mapeoWebXMLDespacho;
     }
-
+    
     private String redireccionarCreacionArtista(HttpServletRequest peticion, HttpSession sesion) throws NumberFormatException {
         String mapeoWebXMLDespacho = "/jsp/artista/crear";
         String f_nombre = peticion.getParameter("nombre");
         String f_año = peticion.getParameter("ano");
         if (f_nombre != null && f_año != null) {
-            sesion = SessionManager.CrearArtista(sesion, f_nombre, Integer.parseInt(f_año));
-            mapeoWebXMLDespacho = "/jsp/artista/todos";
+            boolean artistaCreado = DataManager.addArtista(f_nombre, Integer.parseInt(f_año));
+            if (artistaCreado) {
+                sesion = SessionManager.CrearArtista(sesion, f_nombre, Integer.parseInt(f_año));
+                mapeoWebXMLDespacho = "/jsp/artista/todos";
+            }
         }
         return mapeoWebXMLDespacho;
     }
-
+    
     private String redireccionarEliminacionArtista(HttpServletRequest peticion, HttpSession sesion) throws NumberFormatException {
-        String mapeoWebXMLDespacho = "/jsp/artista/todos";
+        String mapeoWebXMLDespacho = "/jsp/artista/borrar";
         String idArtista = peticion.getParameter("id");
         if (idArtista != null) {
             String confirmar = peticion.getParameter("confirm");
-            if (confirmar.equals("true")) {
-                sesion = SessionManager.EliminarArtista(sesion, Integer.parseInt(idArtista));
+            if (confirmar != null) {
+                boolean artistaEliminado = DataManager.removeArtista(Integer.parseInt(idArtista));
+                if (artistaEliminado) {
+                    mapeoWebXMLDespacho = "/jsp/artista/todos";
+                    sesion = SessionManager.EliminarArtista(sesion, Integer.parseInt(idArtista));
+                }
             }
             else {
-                mapeoWebXMLDespacho = "/jsp/artista/borrar";
                 peticion.setAttribute("id", idArtista);
             }
         }
         return mapeoWebXMLDespacho;
     }
     
-    private String redireccionarBusquedaArtista() {
+    private String redireccionarBusquedaArtista(HttpServletRequest peticion, HttpSession sesion) {
         String mapeoWebXMLDespacho = "/jsp/artista/buscar";
+        String fl_nombre = peticion.getParameter("nombre");
+        if (fl_nombre != null && fl_nombre.isEmpty()) {
+            
+        }
         return mapeoWebXMLDespacho;
     }
-
+    
     /**
      * Redirecciona la petición, devolviendo un código de respuesta 303. Esto
      * es, recibe la información de un formulario y manda al usuario a realizar
@@ -180,7 +191,7 @@ public class Redireccionamientos extends HttpServlet {
         respuesta.setHeader("Location", contexto + mapeoWebXMLDespacho);
         return respuesta;
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -219,5 +230,5 @@ public class Redireccionamientos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
 }

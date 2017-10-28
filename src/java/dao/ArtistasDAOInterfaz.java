@@ -23,6 +23,8 @@ import java.util.List;
  * @author benjamin
  */
 public interface ArtistasDAOInterfaz {
-    public model.Artista getArtistaByName(String nombre);
+    public List<model.Artista>  getArtistasByName(String nombre);
     public List<model.Artista> getAllArtistas();
+    public boolean addArtista(String nombre, int año);
+    public boolean removeArtista(int id);
 }

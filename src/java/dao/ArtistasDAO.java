@@ -19,6 +19,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import model.Artista;
 
@@ -29,15 +30,18 @@ import model.Artista;
 public class ArtistasDAO implements ArtistasDAOInterfaz {
     
     @Override
-    public Artista getArtistaByName(String nombre) {
+    public List<Artista> getArtistasByName(String filtro) {
         try {
             Connection conexion = jdbc.DBConnection.getInstance();
-            String queryString = "SELECT * FROM artistas WHERE artNombres = ?";
-            PreparedStatement query = conexion.prepareStatement(queryString);
-            query.setString(0, nombre);
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM artistas WHERE artNombres = ?");
+            query.setString(0, filtro);
             ResultSet rsQuery = query.executeQuery();
             if (rsQuery.first()) {
-                Artista returnValue = new Artista(rsQuery.getString("artNombres"), rsQuery.getInt("artFNacimiento"));
+                List<Artista> returnValue = new ArrayList<>();
+                do {
+                    Artista nuevo = new Artista(rsQuery.getString("artNombres"), rsQuery.getInt("artFNacimiento"));
+                    returnValue.add(nuevo);
+                } while(rsQuery.next());
                 return returnValue;
             }
         }
@@ -51,8 +55,7 @@ public class ArtistasDAO implements ArtistasDAOInterfaz {
     public List<Artista> getAllArtistas() {
         try {
             Connection conexion = jdbc.DBConnection.getInstance();
-            String queryString = "SELECT * FROM artistas";
-            PreparedStatement query = conexion.prepareStatement(queryString);
+            PreparedStatement query = conexion.prepareStatement("SELECT * FROM artistas");
             ResultSet rsQuery = query.executeQuery();
             if (rsQuery.first()) {
                 List<Artista> returnValue = new java.util.ArrayList<>();
@@ -66,6 +69,37 @@ public class ArtistasDAO implements ArtistasDAOInterfaz {
             System.out.println(ex.getMessage());
         }
         return null;
+    }
+
+    @Override
+    public boolean addArtista(String nombre, int año) {
+        try {
+            Connection conexion = jdbc.DBConnection.getInstance();
+            PreparedStatement query = conexion.prepareStatement("INSERT INTO artistas ) VALUES (?, ?)");
+            query.setString(1, nombre);
+            query.setInt(2, año);
+            int cantidadNuevos = query.executeUpdate();
+            return (cantidadNuevos > 0);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean removeArtista(int id) {
+        try {
+            Connection conexion = jdbc.DBConnection.getInstance();
+            PreparedStatement query = conexion.prepareStatement("DELETE FROM artistas WHERE artID = ?");
+            query.setInt(1, id);
+            int cantidadEliminados = query.executeUpdate();
+            return (cantidadEliminados > 0);
+        }
+        catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
     }
     
 }

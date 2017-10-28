@@ -28,6 +28,10 @@
         <servlet-name>JSP_login</servlet-name>
         <jsp-file>/login.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>JSP_artistasFiltrados</servlet-name>
+        <jsp-file>/queryartist.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>JSP_listarArtistas</servlet-name>
         <url-pattern>/jsp/artista/todos</url-pattern>
@@ -59,6 +63,10 @@
         <url-pattern>/buscar_artista</url-pattern>
         <url-pattern>/crear_artista</url-pattern>
         <url-pattern>/ver_artista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JSP_artistasFiltrados</servlet-name>
+        <url-pattern>/jsp/artista/filtro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

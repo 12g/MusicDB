@@ -20,13 +20,14 @@ import common.Transformer;
 import java.util.List;
 import dao.*;
 import dto.*;
+import java.util.ArrayList;
 
 /**
  *
  * @author benjamin
  */
 public class DataManager {
-    public UsuarioDTO getUsuarioByUserAndPass(String username, String userpass){
+    public static UsuarioDTO getUsuarioByUserAndPass(String username, String userpass){
         UsuariosDAO objDAO = new UsuariosDAO(); 
         model.Usuario usuarioModel = objDAO.getUsuarioByNameAndPass(username, userpass);
         
@@ -38,12 +39,12 @@ public class DataManager {
         return null;    
     }
 
-    public List<UsuarioDTO> getUsuariosList() {
+    public static List<UsuarioDTO> getUsuariosList() {
         UsuariosDAO objDAO = new UsuariosDAO(); 
         List<model.Usuario> modelList = objDAO.getAllUsuarios();
         
         if (modelList.size() > 0) {
-            List<UsuarioDTO> dtoList = new java.util.ArrayList<UsuarioDTO>();
+            List<UsuarioDTO> dtoList = new java.util.ArrayList<>();
             for (model.Usuario um : modelList) {
                 UsuarioDTO objDTO = Transformer.UsuarioModelToDTO(um);
                 dtoList.add(objDTO);
@@ -54,20 +55,24 @@ public class DataManager {
         return null;
     }
     
-    
-    public ArtistaDTO getArtistaByName(String nombre){
+    public static List<ArtistaDTO> getArtistasByName(String nombre){
         ArtistasDAO objDAO = new ArtistasDAO(); 
-        model.Artista artistaModel = objDAO.getArtistaByName(nombre);
+        List<model.Artista> artistas = objDAO.getArtistasByName(nombre);
         
-        if (artistaModel != null) {
-            ArtistaDTO objDTO = Transformer.ArtistaModelToDTO(artistaModel);
-            return objDTO;
+        if (artistas != null && artistas.size() > 0) {
+            List<ArtistaDTO> listaDTO = new ArrayList<>();
+            for (int i = 0; i < artistas.size(); i++) {
+                model.Artista nuevo = artistas.get(i);
+                ArtistaDTO dto = Transformer.ArtistaModelToDTO(nuevo);
+                listaDTO.add(dto);
+            }
+            return listaDTO;
         }
         
         return null;    
     }
 
-    public List<ArtistaDTO> getAllArtistas() {
+    public static List<ArtistaDTO> getAllArtistas() {
         ArtistasDAO objDAO = new ArtistasDAO(); 
         List<model.Artista> modelList = objDAO.getAllArtistas();
         
@@ -83,8 +88,7 @@ public class DataManager {
         return null;
     }
     
-    
-    public AlbumDTO getAlbumByName(String nombre){
+    public static AlbumDTO getAlbumByName(String nombre){
         AlbumesDAO objDAO = new AlbumesDAO(); 
         model.Album albumModel = objDAO.getAlbumByName(nombre);
         
@@ -96,12 +100,12 @@ public class DataManager {
         return null;    
     }
 
-    public List<AlbumDTO> getAllAlbumes() {
+    public static List<AlbumDTO> getAllAlbumes() {
         AlbumesDAO objDAO = new AlbumesDAO(); 
         List<model.Album> modelList = objDAO.getAllAlbums();
         
         if (modelList.size() > 0) {
-            List<AlbumDTO> dtoList = new java.util.ArrayList<AlbumDTO>();
+            List<AlbumDTO> dtoList = new java.util.ArrayList<>();
             for (model.Album um : modelList) {
                 AlbumDTO objDTO = Transformer.AlbumModelToDTO(um);
                 dtoList.add(objDTO);
@@ -112,8 +116,13 @@ public class DataManager {
         return null;
     }
     
-    public boolean addArtista(model.Artista nuevo){
-        
-        return true;
+    public static boolean addArtista(String nombre, int año){
+        ArtistasDAO objDAO = new ArtistasDAO(); 
+        return objDAO.addArtista(nombre, año);
+    }
+    
+    public static boolean removeArtista(int id){
+        ArtistasDAO objDAO = new ArtistasDAO(); 
+        return objDAO.removeArtista(id);
     }
 }
