@@ -14,17 +14,7 @@
     <body style="background-image:url('img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >  
         <div class="container">
             <form action="borrar_artista" method="post">
-                <div class="row">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
+                <div class="row" style="padding: auto">
                     <div class="col-xs-12 text-center">
                         <h2 style="color: #ffffff">¿Está seguro de borrar este artista de los registros?</h2>
                         <input type="hidden" value="${id}" name="id" />
@@ -33,7 +23,7 @@
                         <input type="submit" name="confirm" class="btn btn-danger" value="Sí" />
                     </div>
                     <div class="col-xs-6">
-                        <a href="/MusicWiki/artista/borrar/no" type="button" class="btn btn-danger">No</a>
+                        <a href="listar_artistas" type="button" class="btn btn-success">No</a>
                     </div>
                 </div>
             </form>

@@ -57,16 +57,17 @@
         <url-pattern>/jsp/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>JSP_artistasFiltrados</servlet-name>
+        <url-pattern>/jsp/artista/filtro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Servlet_Redireccion</servlet-name>
         <url-pattern>/borrar_artista</url-pattern>
         <url-pattern>/login</url-pattern>
         <url-pattern>/buscar_artista</url-pattern>
         <url-pattern>/crear_artista</url-pattern>
         <url-pattern>/ver_artista</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>JSP_artistasFiltrados</servlet-name>
-        <url-pattern>/jsp/artista/filtro</url-pattern>
+        <url-pattern>/listar_artistas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

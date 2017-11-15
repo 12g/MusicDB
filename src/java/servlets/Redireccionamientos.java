@@ -52,7 +52,7 @@ public class Redireccionamientos extends HttpServlet {
         String contexto = peticion.getContextPath(); // debiera ser siempre /MusicWiki en esta app web
         String servletSolicitado = peticion.getRequestURI().replace(contexto, "");
         String mapeoWebXMLDespacho;
-        HttpSession sesion = peticion.getSession(false); //Obtiene la sesion
+        HttpSession sesion = peticion.getSession(false); //Obtiene la sesion, NO LA CREA SI NO EXISTE
         if (sesion == null && !servletSolicitado.equals("/login")) {
             mapeoWebXMLDespacho = "/jsp/login";
         } else {
@@ -77,6 +77,10 @@ public class Redireccionamientos extends HttpServlet {
                     mapeoWebXMLDespacho = redireccionarBusquedaArtista(peticion, sesion);
                     break;
                 }
+                case "/listar_artistas": {
+                    mapeoWebXMLDespacho = redireccionarListadoArtistas(peticion, sesion);
+                    break;
+                }
                 default: {
                     mapeoWebXMLDespacho = "/jsp/error";
                     break;
@@ -85,6 +89,8 @@ public class Redireccionamientos extends HttpServlet {
         }
 
         //Código extra - Una microinvestigación en buenas prácticas
+        //esto requiere implementar una detección del contexto real
+        //debe poder encontrar los archivos CSS y JS en ubicaciones absolutas
         if (usarPracticaHTTP303) {
             respuesta = etiquetarRedireccion303(respuesta, contexto, mapeoWebXMLDespacho);
         } else {
@@ -107,7 +113,10 @@ public class Redireccionamientos extends HttpServlet {
             String f_password = peticion.getParameter("password");
             
             if (f_email != null && f_password != null && !f_email.isEmpty() && !f_password.isEmpty()) {
-                sesion = SessionManager.Login(sesion, f_email, f_password);
+                sesion = SessionManager.Login(
+                        peticion.getSession(true), 
+                        f_email, 
+                        f_password);
                 System.out.println("Login exitoso con mail '" + f_email + "' y contraseña '" + f_password + "'");
                 if (sesion != null) {
                     mapeoWebXMLDespacho = "/jsp/artista/todos";
@@ -174,6 +183,11 @@ public class Redireccionamientos extends HttpServlet {
         return mapeoWebXMLDespacho;
     }
     
+    private String redireccionarListadoArtistas(HttpServletRequest peticion, HttpSession sesion) {
+        String mapeoWebXMLDespacho = "/jsp/artista/todos";
+        return mapeoWebXMLDespacho;
+    }
+    
     /**
      * Redirecciona la petición, devolviendo un código de respuesta 303. Esto
      * es, recibe la información de un formulario y manda al usuario a realizar
@@ -230,5 +244,5 @@ public class Redireccionamientos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
+
 }

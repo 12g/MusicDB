@@ -10,10 +10,9 @@
 <html lang="en">
     <head>  
         <title>Artista - Wiki Instruments</title>
-        <%@include file="WEB-INF/jspf/segment_include_styles.jspf" %>
+        <%@include file="segment/head.jsp" %>
     </head>
     <body style="background-image:url('/MusicWiki/img/Guitarra2.jpg'); background-repeat: no-repeat; background-size: 100%" >
-        <%@include file="WEB-INF/jspf/segment_header.jspf" %>
         <div class="container">
             <div class="row">
                 <div class="col-xs-8 col-xs-offset-2 text-muted">
@@ -26,8 +25,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <%@include file="WEB-INF/jspf/segment_footer.jspf" %>
-        <%@include file="WEB-INF/jspf/segment_include_javascript.jspf" %>
+        </div
+        <%@include file="segment/footer.jsp" %>
+        <%@include file="segment/scripts.jsp" %>
     </body>
 </html>
